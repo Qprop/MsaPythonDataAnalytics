@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "PythonDataAnalytics.html#welcome",
+    "href": "PythonDataAnalytics.html#welcome",
+    "title": "Data Analytics Introduction Using Python Training",
+    "section": "Welcome",
+    "text": "Welcome\nWe are embarking on a journey, with multiple stops but the destination will be far out. The stops will be areas of expertise and learning that we will have done and practiced but the destination is the progressive accumulation of the learning.\nWith the ever evolving changing of technology the destination will always be changing."
+  },
+  {
+    "objectID": "PythonDataAnalytics.html#assumptions",
+    "href": "PythonDataAnalytics.html#assumptions",
+    "title": "Data Analytics Introduction Using Python Training",
+    "section": "Assumptions",
+    "text": "Assumptions\nHave some limited or little knowledge of Microsoft excel functions e.g =sum(C1,C2), though not mandatory it makes it easier to grasp concepts slightly faster. Though if you remember the simple mathematics we do everyday of summing and adding money then you are good :)."
+  },
+  {
+    "objectID": "PythonDataAnalytics.html#requirements",
+    "href": "PythonDataAnalytics.html#requirements",
+    "title": "Data Analytics Introduction Using Python Training",
+    "section": "Requirements",
+    "text": "Requirements\n\nInterest and Desire to learn\nWorking Computer (Laptop/Desktop)\nAccess to internet once in a while to download a few resource materials"
+  },
+  {
+    "objectID": "PythonDataAnalytics.html#data-analytics",
+    "href": "PythonDataAnalytics.html#data-analytics",
+    "title": "Data Analytics Introduction Using Python Training",
+    "section": "Data Analytics",
+    "text": "Data Analytics\nColloquial term data analytics can be coined as both a science and an art. With the science part majorly following statistical/mathematical procedures used, art comes from the different ways and methods someone can use to present and execute the since part of it."
+  },
+  {
+    "objectID": "PythonDataAnalytics.html#quarto",
+    "href": "PythonDataAnalytics.html#quarto",
+    "title": "Data Analytics Introduction Using Python Training",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org.\n\n1 + 1\n\n2"
+  }
+]
