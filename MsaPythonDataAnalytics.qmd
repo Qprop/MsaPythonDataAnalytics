@@ -6,6 +6,7 @@ format:
     theme: serif
     smaller: false
     scrollable: true
+code-fold: true
 ---
 
 # Introduction
@@ -99,9 +100,9 @@ There are various tools/Software/applications can be used for data analysis
 :::
 
 
-# Python
+# Python {.smaller}
 
-## Python Introduction  {.smaller}
+## Python Introduction  
 
 Open Source Programming language.First come to use in the early 1990's and developed by **Guido Van Rossum** more information [here](https://en.wikipedia.org/wiki/Python_(programming_language)).
 
@@ -137,6 +138,13 @@ Open Source Programming language.First come to use in the early 1990's and devel
 
 ## Python Interface
 
+Python programming language uses it's in build command prompt frequently called *CLI* standing for *Command Line Interface*, search through windows/MAC program files and you should see *Python 3.0.0)* there are various versions of python and depending on which one you have installed this will determine the python CLI.
+
+Though you can be able to do everything using this, it doesn't give an intuitive user interface hence the reason for development of *IDE* Integrated Development Environment. 
+
+*IDE* is the dashboard similar to car dashboard but the actual software the engine is now *python* for this case.
+
+
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
 ```{python}
@@ -149,9 +157,64 @@ Quarto enables you to weave together content and executable code into a finished
 ## Python modules
 
 
-## Python numpy | Introduction
+## Python numpy | Introduction {.smaller}
+
+***numpy***: python module/library specialized in *Arrays and Vectorized Computation*.
+
+NumPy, short for Numerical Python, is one of the most important foundational packages for numerical computing in Python. Numpy works with array from 1-n dimenisional.
+
+```{python}
+
+#| echo: true
+
+import numpy as np
+
+my_arr = np.arange(10)
+
+#my_list = list(range(10)) #inbuilt python
+
+my_arr
+```
+
+Multidimensional Array
+
+```{python}
+#| echo: true
+
+data = np.array([[1.5, -0.1, 3], [0, -3, 6.5]])
+
+data
+
+```
+
+Array descriptors
+
+```{python}
+#| echo: true
+
+data.shape
+data.dtype
+data.ndim
+
+```
+
 
 ## Python Pandas | Introduction
+
+***Pandas*** : Python module/library enhancing data manipulation tools designed to make data cleaning and analysis fast and convenient in Python. Works intandem with *numpy* and is the core working under the hood.
+
+```{python}
+#| echo: true
+
+import pandas as pd
+
+obj_series = pd.Series([4, 7, -5, 3])
+
+obj_series
+
+```
+
+Main difference of pandas with numpy is that it has indexed values and designed for working with tabular or heterogeneous data.
 
 ## Python Visualization | Matplotlip & Seaborn
 
