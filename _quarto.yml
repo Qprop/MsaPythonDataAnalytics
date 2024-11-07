@@ -1,0 +1,6 @@
+project:
+  title: "PythonDataAnalytics"
+  type: website
+  output-dir: docs
+editor: visual
+

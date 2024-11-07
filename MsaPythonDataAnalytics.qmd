@@ -1,0 +1,164 @@
+---
+title: "Data Analytics Introduction Using Python Training"
+jupyter: python3
+format: 
+  revealjs:
+    theme: serif
+    smaller: false
+    scrollable: true
+---
+
+# Introduction
+
+## Welcome
+
+We are embarking on a journey, with multiple stops but the destination will be far out. The stops will be areas of expertise and learning that we will have done and practiced but the destination is the progressive accumulation of the learning.
+
+With the ever evolving changing of technology the destination will always be changing.
+
+------------------------------------------------------------------------
+
+::: {.columns}
+
+::: {.column width="60%"}
+### Assumptions {.smaller}
+
+Have some limited or little knowledge of Microsoft excel functions e.g `=sum(C1,C2)`, though not mandatory it makes it easier to grasp concepts slightly faster. Though if you remember the simple mathematics we do everyday of summing and adding money then you are good :).
+:::
+
+::: {.column width="40%"}
+### Requirements {.smaller}
+
+-   *Interest* and *Desire* to learn
+-   Working Computer (Laptop/Desktop)
+-   Access to internet once in a while to download a few resource materials
+:::
+:::
+
+
+
+------------------------------------------------------------------------
+
+
+
+::: {.columns}
+
+::: {.column width="40%"}
+### Teaching guide
+
+-   Mixed instructional guide, with the presentation but focused on getting more hard skills
+
+-   Engagements and practice on the fly
+:::
+
+::: {.column width="60%"}
+### About
+
+Just me but you can see you can get the details from [qprop](https://www.qprop.me/about/)
+
+Will be getting assisted by Alex.
+:::
+:::
+
+## Data Analytics {.smaller}
+
+Colloquial term ***data analytics*** can be coined as both a science and an art. With the ***science*** part majorly following statistical/mathematical procedures used, *art* comes from the different ways and methods someone can use to present and execute the since part of it.
+
+
+
+
+### Tools for Data Analytics
+
+There are various tools/Software/applications can be used for data analysis
+
+
+::: {.columns}
+
+::: {.column width="50%"}
+- Paid for: 
+  - Ms Excel
+  - Ms Power BI
+  - SPSS
+  - STATA
+  - SAS
+  - MS SQL
+  
+:::
+::: {.column width="50%"}
+
+  
+- Open Source: **Free**
+  - ***Python***
+  - R
+  - Postgres
+  - Julia
+  - MangoDB
+  - CouchDB
+  
+:::
+:::
+
+
+# Python
+
+## Python Introduction  {.smaller}
+
+Open Source Programming language.First come to use in the early 1990's and developed by **Guido Van Rossum** more information [here](https://en.wikipedia.org/wiki/Python_(programming_language)).
+
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+### Advantages
+
+- Easy to learn
+- Almost language like syntax
+- Fast execution
+- All Purpose programming language:
+  - used for software development
+  - used for data analysis
+  - used for machine learning
+  - used for web development
+
+:::
+
+::: {.column width="50%"}
+
+### Disadvantages
+
+- Some convections are different from other programming language
+- High level interpreted language
+
+:::
+:::
+
+
+
+## Python Interface
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{python}
+#| echo: true
+
+1 + 1
+```
+
+
+## Python modules
+
+
+## Python numpy | Introduction
+
+## Python Pandas | Introduction
+
+## Python Visualization | Matplotlip & Seaborn
+
+## Folder Structure & File Management
+
+
+
+# SQL
+
+## SQL Introduction  {.smaller}
