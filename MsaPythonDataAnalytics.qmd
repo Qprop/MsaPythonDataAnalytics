@@ -6,6 +6,9 @@ format:
     theme: serif
     smaller: true
     scrollable: true
+    incremental: true
+    transition: zoom
+    background-transition: fade
 code-fold: true
 ---
 
@@ -195,9 +198,10 @@ print("Hello WOrld")
 
 Let us use it as a calculator.
 
-```{python code-line-numbers="4,6,8,10"}
+```{python}
 #| echo: true
 #| eval: false
+#| code-line-numbers: "|1|3|5|7"
 
 2 + 2  #Add
 #4
@@ -233,10 +237,30 @@ Using ***comments***
 
 ```
 
+### Keywords
+
+**python** has *keywords* this are words that have syntactical use in the program below list even though not fully conclusive.
+
+`and`   `continue`    `except`    `global`    `lambda`    `raise`   `yield`
+
+`as`    `def`   `exec`    `if`    `not`   `return`
+
+`assert`    `del`   `finally`   `import`    `or`    `try`
+
+`break`   `elif`    `for`   `in`    `pass`    `while`
+
+`class`   `else`    `from`    `is`    `print`   `with`
+
 
 ### Data types
 
+**Numbers**
+**Integer Numbers**
+
+
 **Strings**
+
+sequence of characters used to store and represent text-based information
 
 ```{python}
 #| echo: true
@@ -244,26 +268,89 @@ first_string = "My first String"
 first_string
 ```
 
+```{python}
+#| echo: true
+#| eval: false
+long_string = """Very long string
+spanning multiple lines
+that never seem to come to an end"""
+long_string
+```
+
+
 ***List***
+
+Mutable ordered sequence of items.
 
 ```{python}
 #| echo: true
-first_list = [1,2,3,4]
+first_list = [1,2,3,4,1,1,1,1]
 first_list
 ```
 
+List objects provide several methods
+
+```{python}
+#| echo: true
+#| eval: false
+first_list.count(1)
+first_list.index(1)
+first_list.append(5)
+first_list.remove(5)
+first_list.pop(-1)
+first_list.reverse()
+first_list.sort()
+```
+
+
+
 ***Tuples***
+
+Immutable ordered sequence of items.
+
 ```{python}
 #| echo: true
 first_tuple = (1,2,3)
 first_tuple
 ```
 
+***Sets***
+
+Ordered collections of unique items.
+
+```{python}
+#| echo: true
+#| #| eval: false
+{42, 3.14, 'hello'} # Literal for a set with three items
+{100} # Literal for a set with one item
+set() # Empty set (can't use {}—empty dict!)
+```
+
+
 ***Dictionary***
+
+Arbitrary collection of objects indexed by nearly arbitrary values called keys.
+
 ```{python}
 #| echo: true
 first_dic = {'a' : [1,2,3], 'b' : [4,5,6], 'c' : [7,6,8]}
 first_dic
+```
+
+```{python}
+#| echo: true
+#| eval: false
+
+{'x':42, 'y':3.14, 'z':7} # Dictionary with three items, str keys
+{1:2, 3:4} # Dictionary with two items, int keys
+{1:'za', 'br':23} # Dictionary with mixed key types
+{} # Empty dictionary
+
+
+dict(x=42, y=3.14, z=7) # Dictionary with three items, str keys
+dict([(1, 2), (3, 4)]) # Dictionary with two items, int keys
+dict([(1,'za'), ('br',23)]) # Dictionary with mixed key types
+dict() # Empty dictionary
 ```
 
 
@@ -293,6 +380,7 @@ first_list
 
 ### Summary Sheets
 
+**associativity** of the operator: L (left-to-right), R (right-to-left), or NA (nonassociative).
 
 |**Operator**|**Description**|**Associativity**|
 |----|-----|------|
