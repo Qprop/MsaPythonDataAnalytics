@@ -503,19 +503,311 @@
 </div>
 </div>
 </section>
-<section id="python-interface" class="slide level2">
+<section id="python-interface" class="slide level2 smaller">
 <h2>Python Interface</h2>
 <p>Python programming language uses it’s in build command prompt frequently called <em>CLI</em> standing for <em>Command Line Interface</em>, search through windows/MAC program files and you should see <em>Python 3.0.0)</em> there are various versions of python and depending on which one you have installed this will determine the python CLI.</p>
 <p>Though you can be able to do everything using this, it doesn’t give an intuitive user interface hence the reason for development of <em>IDE</em> Integrated Development Environment.</p>
 <p><em>IDE</em> is the dashboard similar to car dashboard but the actual software the engine is now <em>python</em> for this case.</p>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">IDE’s Common to Python</a></li><li><a href="#tabset-1-2">Installations</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<ul>
+<li>Pycharm</li>
+<li>Spyder</li>
+<li>vsCode</li>
+<li>Rstudio</li>
+<li>Positron (<em>New in Beta</em>)</li>
+<li>Text editors
+<ul>
+<li>notepad ++</li>
+<li>vim</li>
+<li>sublime</li>
+</ul></li>
+<li>e.t.c</li>
+</ul>
+<p>Though there are many and the tool of choice is open for use, for now we can focus on using vsCode as this is universal to also other programming languages but if you are interested in a polygot system you can test positron.</p>
+</div>
+<div id="tabset-1-2">
+<p><strong><em>Let us check what installations you have</em></strong></p>
+<ul>
+<li>Python Installation</li>
+<li>IDE Installation</li>
+<li>To install all this together we prefer <a href="www.anaconda.com">anaconda</a>
+<ul>
+<li>Anaconda | <strong>full suit of packages and tools</strong></li>
+<li>miniconda | <strong>minimal and necessary packages</strong></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="python-hello-world" class="slide level2">
+<h2>Python | Hello World</h2>
+<p>Python being an interpreted high level programming language, making things easier for the programmer. Able to pick up the things very easily.</p>
+<p>Let us start with the first code.</p>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Hello World</a></li><li><a href="#tabset-2-2">Data types</a></li><li><a href="#tabset-2-3">Methods &amp; Functions</a></li><li><a href="#tabset-2-4">Summary Sheets</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="bu">print</span>(<span class="st">"Hello WOrld"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>2</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello WOrld</code></pre>
+</div>
+</div>
+<p>Let us use it as a calculator.</p>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>  <span class="co">#Add</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#4</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="dv">3</span> <span class="op">-</span> <span class="dv">1</span>  <span class="co">#Subtract</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#2</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="dv">4</span> <span class="op">*</span> <span class="dv">5</span>  <span class="co">#Multiply</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#20</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="dv">20</span> <span class="op">/</span> <span class="dv">5</span> <span class="co">#Divide</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#4 </span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="dv">5</span> <span class="op">**</span> <span class="dv">2</span> <span class="co">#Exponent</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#25</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="dv">5</span> <span class="op">%</span> <span class="dv">2</span>  <span class="co">#?What is the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Using it as an <strong><em>input</em></strong></p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">input</span>(<span class="st">"What's your name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Using <strong><em>comments</em></strong></p>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#This is a comment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div id="tabset-2-2">
+<p><strong>Strings</strong></p>
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>first_string <span class="op">=</span> <span class="st">"My first String"</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>first_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>'My first String'</code></pre>
+</div>
+</div>
+<p><strong><em>List</em></strong></p>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>first_list <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
+<span id="cb8-2"><a href="#cb8-2"></a>first_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>[1, 2, 3, 4]</code></pre>
+</div>
+</div>
+<p><strong><em>Tuples</em></strong></p>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>first_tuple <span class="op">=</span> (<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>first_tuple</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>(1, 2, 3)</code></pre>
+</div>
+</div>
+<p><strong><em>Dictionary</em></strong></p>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>first_dic <span class="op">=</span> {<span class="st">'a'</span> : [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], <span class="st">'b'</span> : [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>], <span class="st">'c'</span> : [<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">8</span>]}</span>
+<span id="cb12-2"><a href="#cb12-2"></a>first_dic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<pre><code>{'a': [1, 2, 3], 'b': [4, 5, 6], 'c': [7, 6, 8]}</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-3">
+<p><strong>Methods</strong></p>
+<p>Method: Attributes associated to different objects and data types. As well classes at a broader level</p>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>first_string.upper()</span>
+<span id="cb14-2"><a href="#cb14-2"></a>first_string.lower()</span>
+<span id="cb14-3"><a href="#cb14-3"></a>first_string.swapcase()</span>
+<span id="cb14-4"><a href="#cb14-4"></a>first_string.rsplit() <span class="co">#separating or delimiter is a space</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<pre><code>['My', 'first', 'String']</code></pre>
+</div>
+</div>
+<p><strong><em>Functions</em></strong></p>
+<div class="cell" data-execution_count="10">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>first_list <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
+<span id="cb16-2"><a href="#cb16-2"></a>first_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<pre><code>[1, 2, 3, 4]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-4">
+<table>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 33%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Operator</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Associativity</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>{key:expr,...}</code></td>
+<td>Dictionary creation</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td><code>{ expr ,...}</code></td>
+<td>Set creation</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td><code>[ expr ,...]</code></td>
+<td>List creation</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td><code>( expr ,...)</code></td>
+<td>Tuple creation or just parentheses</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td><code>f ( expr ,...)</code></td>
+<td>Function call</td>
+<td>L</td>
+</tr>
+<tr class="even">
+<td><code>x [ index : index ]</code></td>
+<td>Slicing</td>
+<td>L</td>
+</tr>
+<tr class="odd">
+<td><code>x [ index ]</code></td>
+<td>Indexing</td>
+<td>L</td>
+</tr>
+<tr class="even">
+<td><code>x . attr</code></td>
+<td>Attribute reference</td>
+<td>L</td>
+</tr>
+<tr class="odd">
+<td><code>x ** y</code></td>
+<td>Exponentiation (x to the yth power)</td>
+<td>R</td>
+</tr>
+<tr class="even">
+<td><code>~ x</code></td>
+<td>Bitwise NOT</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td><code>+x, -x</code></td>
+<td>Unary plus and minus</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td><code>x*y, x/y, x//y, x%y</code></td>
+<td>Multiplication, division, truncating division,remainder</td>
+<td>L</td>
+</tr>
+<tr class="odd">
+<td><code>x+y, x-y</code></td>
+<td>Addition, subtraction</td>
+<td>L</td>
+</tr>
+<tr class="even">
+<td><code>x&lt;&lt;y, x&gt;&gt;y</code></td>
+<td>Left-shift, right-shift</td>
+<td>L</td>
+</tr>
+<tr class="odd">
+<td><code>x &amp; y</code></td>
+<td>Bitwise AND</td>
+<td>L</td>
+</tr>
+<tr class="even">
+<td><code>x ^ y</code></td>
+<td>Bitwise XOR</td>
+<td>L</td>
+</tr>
+<tr class="odd">
+<td><code>x | y</code></td>
+<td>Bitwise OR</td>
+<td>L</td>
+</tr>
+<tr class="even">
+<td><code>x&lt;y, x&lt;=y, x&gt;y, x&gt;=y, x&lt;&gt;y (v2 only),x!=y, x==y</code></td>
+<td>Comparisons (less than, less than or equal, greater than, greater than or equal, inequality, equality)a</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td><code>x is y, x is not y</code></td>
+<td>Identity tests</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td><code>x in y, x not in y</code></td>
+<td>Membership tests</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td><code>not x</code></td>
+<td>Boolean NOT</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td><code>x and y</code></td>
+<td>Boolean AND</td>
+<td>L</td>
+</tr>
+<tr class="odd">
+<td><code>x or y</code></td>
+<td>Boolean OR</td>
+<td>L</td>
+</tr>
+<tr class="even">
+<td><code>x if expr else y</code></td>
+<td>Ternary operator</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td><code>lambda arg,...: expr</code></td>
+<td>Anonymous simple function</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </section>
@@ -525,44 +817,44 @@
 <section id="python-numpy-introduction" class="slide level2 smaller">
 <h2>Python numpy | Introduction</h2>
 <p><strong><em>numpy</em></strong>: python module/library specialized in <em>Arrays and Vectorized Computation</em>.</p>
-<p>NumPy, short for Numerical Python, is one of the most important foundational packages for numerical computing in Python. Numpy works with array from 1-n dimenisional.</p>
-<div class="cell" data-execution_count="2">
+<p>NumPy, short for Numerical Python, is one of the most important foundational packages for numerical computing in Python. Numpy works with array from 1-n dimensional.</p>
+<div class="cell" data-execution_count="11">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>my_arr <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#my_list = list(range(10)) #inbuilt python</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a>my_arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>my_arr <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="co">#my_list = list(range(10)) #inbuilt python</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a></span>
+<span id="cb18-7"><a href="#cb18-7"></a>my_arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="57">
 <pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
 </div>
 </div>
 <p>Multidimensional Array</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="12">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>data <span class="op">=</span> np.array([[<span class="fl">1.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="dv">3</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="dv">3</span>, <span class="fl">6.5</span>]])</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>data <span class="op">=</span> np.array([[<span class="fl">1.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="dv">3</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="dv">3</span>, <span class="fl">6.5</span>]])</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="58">
 <pre><code>array([[ 1.5, -0.1,  3. ],
        [ 0. , -3. ,  6.5]])</code></pre>
 </div>
 </div>
 <p>Array descriptors</p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="13">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>data.shape</span>
-<span id="cb7-2"><a href="#cb7-2"></a>data.dtype</span>
-<span id="cb7-3"><a href="#cb7-3"></a>data.ndim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>data.shape</span>
+<span id="cb22-2"><a href="#cb22-2"></a>data.dtype</span>
+<span id="cb22-3"><a href="#cb22-3"></a>data.ndim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="59">
 <pre><code>2</code></pre>
 </div>
 </div>
@@ -570,16 +862,16 @@
 <section id="python-pandas-introduction" class="slide level2">
 <h2>Python Pandas | Introduction</h2>
 <p><strong><em>Pandas</em></strong> : Python module/library enhancing data manipulation tools designed to make data cleaning and analysis fast and convenient in Python. Works intandem with <em>numpy</em> and is the core working under the hood.</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="14">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>obj_series <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">3</span>])</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a>obj_series</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a>obj_series <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">3</span>])</span>
+<span id="cb24-4"><a href="#cb24-4"></a></span>
+<span id="cb24-5"><a href="#cb24-5"></a>obj_series</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="60">
 <pre><code>0    4
 1    7
 2   -5
@@ -633,13 +925,13 @@ dtype: int64</code></pre>
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
+'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
+'smaller': true,
  
         // Display controls in the bottom right corner
         controls: false,

@@ -4,7 +4,7 @@ jupyter: python3
 format: 
   revealjs:
     theme: serif
-    smaller: false
+    smaller: true
     scrollable: true
 code-fold: true
 ---
@@ -136,7 +136,7 @@ Open Source Programming language.First come to use in the early 1990's and devel
 
 
 
-## Python Interface
+## Python Interface {.smaller}
 
 Python programming language uses it's in build command prompt frequently called *CLI* standing for *Command Line Interface*, search through windows/MAC program files and you should see *Python 3.0.0)* there are various versions of python and depending on which one you have installed this will determine the python CLI.
 
@@ -144,14 +144,185 @@ Though you can be able to do everything using this, it doesn't give an intuitive
 
 *IDE* is the dashboard similar to car dashboard but the actual software the engine is now *python* for this case.
 
+::: {.panel-tabset}
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+### IDE's Common to Python
+
+- Pycharm
+- Spyder
+- vsCode
+- Rstudio
+- Positron (*New in Beta*)
+- Text editors
+  - notepad ++
+  - vim
+  - sublime
+- e.t.c
+
+
+Though there are many and the tool of choice is open for use, for now we can focus on using vsCode as this is universal to also other programming languages but if you are interested in a polygot system you can test positron.
+
+### Installations
+
+***Let us check what installations you have***
+
+- Python Installation
+- IDE Installation
+- To install all this together we prefer [anaconda](www.anaconda.com)
+  - Anaconda | **full suit of packages and tools**
+  - miniconda | **minimal and necessary packages**
+
+:::
+
+
+## Python | Hello World
+
+Python being an interpreted high level programming language, making things easier for the programmer. Able to pick up the things very easily.
+
+Let us start with the first code.
+
+::: {.panel-tabset}
+
+### Hello World
+
+```{python}
+#| echo: True
+
+print("Hello WOrld")
+
+
+```
+
+Let us use it as a calculator.
+
+```{python code-line-numbers="4,6,8,10"}
+#| echo: true
+#| eval: false
+
+2 + 2  #Add
+#4
+3 - 1  #Subtract
+#2
+4 * 5  #Multiply
+#20
+20 / 5 #Divide
+#4 
+5 ** 2 #Exponent
+#25
+5 % 2  #?What is the result
+
+```
+
+
+Using it as an ***input***
+
+```{python}
+#| echo: true
+#| eval: false
+
+input("What's your name")
+
+```
+
+Using ***comments***
 
 ```{python}
 #| echo: true
 
-1 + 1
+#This is a comment
+
 ```
+
+
+### Data types
+
+**Strings**
+
+```{python}
+#| echo: true
+first_string = "My first String"
+first_string
+```
+
+***List***
+
+```{python}
+#| echo: true
+first_list = [1,2,3,4]
+first_list
+```
+
+***Tuples***
+```{python}
+#| echo: true
+first_tuple = (1,2,3)
+first_tuple
+```
+
+***Dictionary***
+```{python}
+#| echo: true
+first_dic = {'a' : [1,2,3], 'b' : [4,5,6], 'c' : [7,6,8]}
+first_dic
+```
+
+
+### Methods & Functions
+
+**Methods**
+
+Method: Attributes associated to different objects and data types. As well classes at a broader level
+
+```{python}
+#| echo: true
+first_string.upper()
+first_string.lower()
+first_string.swapcase()
+first_string.rsplit() #separating or delimiter is a space
+
+```
+
+***Functions***
+
+```{python}
+#| echo: true
+first_list = [1,2,3,4]
+first_list
+```
+
+
+### Summary Sheets
+
+
+|**Operator**|**Description**|**Associativity**|
+|----|-----|------|
+|`{key:expr,...}`   |Dictionary creation| NA|
+|`{ expr ,...}`     |Set creation       | NA|
+|`[ expr ,...]`     |List creation      | NA|
+|`( expr ,...)`     |Tuple creation or just parentheses      | NA|
+|`f ( expr ,...)`     |Function call      | L|
+|`x [ index : index ]`     |Slicing      | L|
+|`x [ index ]`     |Indexing      | L|
+|`x . attr`     |Attribute reference      | L|
+|`x ** y`     |Exponentiation (x to the yth power)      | R|
+|`~ x`     |Bitwise NOT      | NA|
+|`+x, -x`     |Unary plus and minus      | NA|
+|`x*y, x/y, x//y, x%y`     |Multiplication, division, truncating division,remainder      | L|
+|`x+y, x-y` | Addition, subtraction | L |
+|`x<<y, x>>y` | Left-shift, right-shift | L |
+|`x & y` | Bitwise AND | L |
+|`x ^ y` | Bitwise XOR | L |
+|`x | y` | Bitwise OR | L |
+|`x<y, x<=y, x>y, x>=y, x<>y (v2 only),x!=y, x==y` | Comparisons (less than, less than or equal, greater than, greater than or equal, inequality, equality)a | NA |
+|`x is y, x is not y` | Identity tests | NA |
+|`x in y, x not in y` | Membership tests | NA |
+|`not x` | Boolean NOT | NA | 
+|`x and y` | Boolean AND | L | 
+|`x or y` | Boolean OR | L | 
+|`x if expr else y` | Ternary operator | NA |
+|`lambda arg,...: expr` | Anonymous simple function | NA |
+
+:::
 
 
 ## Python modules
@@ -161,7 +332,7 @@ Quarto enables you to weave together content and executable code into a finished
 
 ***numpy***: python module/library specialized in *Arrays and Vectorized Computation*.
 
-NumPy, short for Numerical Python, is one of the most important foundational packages for numerical computing in Python. Numpy works with array from 1-n dimenisional.
+NumPy, short for Numerical Python, is one of the most important foundational packages for numerical computing in Python. Numpy works with array from 1-n dimensional.
 
 ```{python}
 
