@@ -6,10 +6,13 @@ format:
     theme: serif
     smaller: true
     scrollable: true
-    incremental: true
-    transition: zoom
+    incremental: false
+    transition: concave
     background-transition: fade
-code-fold: true
+    controls: true
+    code-fold: true
+    code-tools: true
+
 ---
 
 # Introduction
@@ -237,6 +240,25 @@ Using ***comments***
 
 ```
 
+Assigning objects to names **variables**
+
+```{python}
+#| echo: true
+
+
+department = "DT"
+
+print(department)
+
+# you can change the variable on the fly
+
+department = 'Customs'
+
+print(department)
+```
+
+
+
 ### Keywords
 
 **python** has *keywords* this are words that have syntactical use in the program below list even though not fully conclusive.
@@ -255,7 +277,25 @@ Using ***comments***
 ### Data types
 
 **Numbers**
-**Integer Numbers**
+
+Integers, floating point numbers and complex numbers falls under Python numbers category.
+
+> We can use the `type()` function to know which class a variable or a value belongs to and the `isinstance()` function to check if an object belongs to a particular class.
+
+```{python}
+#| echo: true
+
+a = 5
+print(a, "is of type", type(a))
+
+a = 2.0
+print(a, "is of type", type(a))
+
+a = 1+2j
+print(a, "is of type", type(a))
+print(a, "is complex number?", isinstance(1+2j,complex))
+
+```
 
 
 **Strings**
@@ -306,7 +346,7 @@ first_list.sort()
 
 ***Tuples***
 
-Immutable ordered sequence of items.
+Immutable ordered sequence of items.Tuples once created cannot be modified.
 
 ```{python}
 #| echo: true
@@ -415,6 +455,34 @@ first_list
 
 ## Python modules
 
+## Modules introduction
+
+When our program grows bigger, it is a good idea to break it into different modules.
+
+A module is a file containing Python definitions and statements. Python modules have a filename and end with the extension .py.
+
+Definitions inside a module can be imported to another module or the interactive interpreter in Python. We use the import keyword to do this.
+
+For example, we can import the math module by typing in import math.
+
+```{python}
+#| echo: true
+
+import math
+print(math.pi)
+
+
+```
+
+Checking paths using **sys** module
+
+```{python}
+#| echo: true
+
+import sys
+print(sys.path)
+```
+
 
 ## Python numpy | Introduction {.smaller}
 
@@ -476,6 +544,56 @@ obj_series
 Main difference of pandas with numpy is that it has indexed values and designed for working with tabular or heterogeneous data.
 
 ## Python Visualization | Matplotlip & Seaborn
+
+::: {.panel-tabset}
+
+### Matplotlip
+
+Matplotlib is the "grandfather" library of data visualization with Python. It was created by John Hunter. He created it to try to replicate MatLab's (another programming language) plotting capabilities in Python. So if you happen to be familiar with matlab, matplotlib will feel natural to you.
+
+It is an excellent 2D and 3D graphics library for generating scientific figures. 
+
+Some of the major Pros of Matplotlib are:
+
+* Generally easy to get started for simple plots
+* Support for custom labels and texts
+* Great control of every element in a figure
+* High-quality output in many formats
+* Very customizable in general
+
+Matplotlib allows you to create reproducible figures programmatically. Let's learn how to use it! Before continuing this lecture, I encourage you just to explore the official Matplotlib web page: [http://matplotlib.org/](http://matplotlib.org/)
+
+
+```{python}
+#| echo: true
+#| eval: true
+import matplotlib.pyplot as plt
+```
+
+```{python}
+#| echo: true
+import numpy as np
+x = np.linspace(0, 5, 11)
+y = x ** 2
+```
+
+Since we are using ipython notebook we need to run `%matplotlib inline` before running the plot
+
+```{python}
+#| echo: true
+plt.plot(x, y, 'r') # 'r' is the color red
+plt.xlabel('X Axis Title Here')
+plt.ylabel('Y Axis Title Here')
+plt.title('String Title Here')
+plt.show()
+```
+
+
+### Seaborn
+
+
+:::
+
 
 ## Folder Structure & File Management
 
