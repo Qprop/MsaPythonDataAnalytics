@@ -384,6 +384,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -515,6 +518,7 @@
 <ul>
 <li>Pycharm</li>
 <li>Spyder</li>
+<li><em>jupyter</em></li>
 <li>vsCode</li>
 <li>Rstudio</li>
 <li>Positron (<em>New in Beta</em>)</li>
@@ -610,6 +614,11 @@
 Customs</code></pre>
 </div>
 </div>
+<p>Rules for variable names</p>
+<ul>
+<li>Can’t start with numbers (1,2,3,4….)</li>
+<li>Letter, numbers, underscores are allowed in the name but ’,-, spaces are not allowed</li>
+</ul>
 </div>
 <div id="tabset-2-2">
 <p><strong>python</strong> has <em>keywords</em> this are words that have syntactical use in the program below list even though not fully conclusive.</p>
@@ -918,6 +927,17 @@ Customs</code></pre>
 </div>
 </div>
 </section>
+<section id="python-further-into-hello-world" class="slide level2">
+<h2>Python | Further into Hello World</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Iterations</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<p>Iterations is repeating and the most common form of iteration is <code>for</code> Code highligt for <code>for</code></p>
+</div>
+</div>
+</div>
+</section>
 <section id="python-modules" class="slide level2">
 <h2>Python modules</h2>
 </section>
@@ -927,7 +947,7 @@ Customs</code></pre>
 <p>A module is a file containing Python definitions and statements. Python modules have a filename and end with the extension .py.</p>
 <p>Definitions inside a module can be imported to another module or the interactive interpreter in Python. We use the import keyword to do this.</p>
 <p>For example, we can import the math module by typing in import math.</p>
-<div class="cell" data-execution_count="17">
+<div class="cell" data-execution_count="18">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">import</span> math</span>
@@ -938,7 +958,7 @@ Customs</code></pre>
 </div>
 </div>
 <p>Checking paths using <strong>sys</strong> module</p>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="19">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">import</span> sys</span>
@@ -953,7 +973,7 @@ Customs</code></pre>
 <h2>Python numpy | Introduction</h2>
 <p><strong><em>numpy</em></strong>: python module/library specialized in <em>Arrays and Vectorized Computation</em>.</p>
 <p>NumPy, short for Numerical Python, is one of the most important foundational packages for numerical computing in Python. Numpy works with array from 1-n dimensional.</p>
-<div class="cell" data-execution_count="19">
+<div class="cell" data-execution_count="20">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -969,7 +989,7 @@ Customs</code></pre>
 </div>
 </div>
 <p>Multidimensional Array</p>
-<div class="cell" data-execution_count="20">
+<div class="cell" data-execution_count="21">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>data <span class="op">=</span> np.array([[<span class="fl">1.5</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="dv">3</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="dv">3</span>, <span class="fl">6.5</span>]])</span>
@@ -982,7 +1002,7 @@ Customs</code></pre>
 </div>
 </div>
 <p>Array descriptors</p>
-<div class="cell" data-execution_count="21">
+<div class="cell" data-execution_count="22">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>data.shape</span>
@@ -997,7 +1017,7 @@ Customs</code></pre>
 <section id="python-pandas-introduction" class="slide level2">
 <h2>Python Pandas | Introduction</h2>
 <p><strong><em>Pandas</em></strong> : Python module/library enhancing data manipulation tools designed to make data cleaning and analysis fast and convenient in Python. Works intandem with <em>numpy</em> and is the core working under the hood.</p>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="23">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -1015,13 +1035,203 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Main difference of pandas with numpy is that it has indexed values and designed for working with tabular or heterogeneous data.</p>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Intro</a></li><li><a href="#tabset-4-2">Pandas Summary</a></li><li><a href="#tabset-4-3">Pandas Import/Export [Read/Write]</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<p>Pandas relies on dataframes this is excel like data format with rows/records and columns/fields. Which mankes it easy to work with.</p>
+<p>Each row stands for an observation and columns here are variables.</p>
+<div class="cell" data-execution_count="24">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>data <span class="op">=</span> {</span>
+<span id="cb39-2"><a href="#cb39-2"></a>  <span class="st">'county'</span> : [<span class="st">'Nairobi'</span>,<span class="st">'Kiambu'</span>,<span class="st">'Kajiado'</span>,<span class="st">'Machakos'</span>],</span>
+<span id="cb39-3"><a href="#cb39-3"></a>  <span class="st">'headquarters'</span> : [<span class="st">'Nairobi'</span>,<span class="st">'Kiambu'</span>,<span class="st">'Kajiado'</span>,<span class="st">'Machakos'</span>],</span>
+<span id="cb39-4"><a href="#cb39-4"></a>  <span class="st">'population'</span> : [<span class="dv">4397073</span>,<span class="dv">2417735</span>,<span class="dv">1117840</span>,<span class="dv">1421932</span>]</span>
+<span id="cb39-5"><a href="#cb39-5"></a>}</span>
+<span id="cb39-6"><a href="#cb39-6"></a></span>
+<span id="cb39-7"><a href="#cb39-7"></a>df_data <span class="op">=</span> pd.DataFrame(data,columns<span class="op">=</span>[<span class="st">'county'</span>,<span class="st">'headquarters'</span>,<span class="st">'population'</span>])</span>
+<span id="cb39-8"><a href="#cb39-8"></a>df_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">county</th>
+<th data-quarto-table-cell-role="th">headquarters</th>
+<th data-quarto-table-cell-role="th">population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Nairobi</td>
+<td>Nairobi</td>
+<td>4397073</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Kiambu</td>
+<td>Kiambu</td>
+<td>2417735</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Kajiado</td>
+<td>Kajiado</td>
+<td>1117840</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Machakos</td>
+<td>Machakos</td>
+<td>1421932</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Checking and investigating the dataframe</p>
+<div class="cell" data-execution_count="25">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>df_data.shape()</span>
+<span id="cb40-2"><a href="#cb40-2"></a>df_data.index()</span>
+<span id="cb40-3"><a href="#cb40-3"></a>df_data.columns()</span>
+<span id="cb40-4"><a href="#cb40-4"></a>df_data.info()</span>
+<span id="cb40-5"><a href="#cb40-5"></a>df_data.count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div id="tabset-4-2">
+<div class="cell" data-execution_count="26">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>df_data.<span class="bu">sum</span>()</span>
+<span id="cb41-2"><a href="#cb41-2"></a>df_data.cumsum()</span>
+<span id="cb41-3"><a href="#cb41-3"></a>df_data.<span class="bu">min</span>()</span>
+<span id="cb41-4"><a href="#cb41-4"></a>df_data.<span class="bu">max</span>()</span>
+<span id="cb41-5"><a href="#cb41-5"></a>df_data.idmax()</span>
+<span id="cb41-6"><a href="#cb41-6"></a>df_data.idmin()</span>
+<span id="cb41-7"><a href="#cb41-7"></a>df_data.describe()</span>
+<span id="cb41-8"><a href="#cb41-8"></a>df_data.mean()</span>
+<span id="cb41-9"><a href="#cb41-9"></a>df_data.media()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div id="tabset-4-3">
+<p><strong>Read CSV</strong></p>
+<p><strong>Read excel</strong></p>
+<table>
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>read_csv</td>
+<td>Load delimited data from a file, URL, or file-like object; use comma as default delimiter</td>
+</tr>
+<tr class="even">
+<td>read_fwf</td>
+<td>Read data in fixed-width column format (i.e., no delimiters)</td>
+</tr>
+<tr class="odd">
+<td>read_clipboard</td>
+<td>Variation of <code>read_csv</code> that reads data from the clipboard; useful for converting tables from web pages</td>
+</tr>
+<tr class="even">
+<td>read_excel</td>
+<td>Read tabular data from an Excel XLS or XLSX file</td>
+</tr>
+<tr class="odd">
+<td>read_hdf</td>
+<td>Read HDF5 files written by pandas</td>
+</tr>
+<tr class="even">
+<td>read_html</td>
+<td>Read all tables found in the given HTML document</td>
+</tr>
+<tr class="odd">
+<td>read_json</td>
+<td>Read data from a JSON (JavaScript Object Notation) string representation, file, URL, or file-like object</td>
+</tr>
+<tr class="even">
+<td>read_feather</td>
+<td>Read the Feather binary file format</td>
+</tr>
+<tr class="odd">
+<td>read_orc</td>
+<td>Read the Apache ORC binary file format</td>
+</tr>
+<tr class="even">
+<td>read_parquet</td>
+<td>Read the Apache Parquet binary file format</td>
+</tr>
+<tr class="odd">
+<td>read_pickle</td>
+<td>Read an object stored by pandas using the Python pickle format</td>
+</tr>
+<tr class="even">
+<td>read_sas</td>
+<td>Read a SAS dataset stored in one of the SAS system’s custom storage formats</td>
+</tr>
+<tr class="odd">
+<td>read_spss</td>
+<td>Read a data file created by SPSS</td>
+</tr>
+<tr class="even">
+<td>read_sql</td>
+<td>Read the results of a SQL query (using SQLAlchemy)</td>
+</tr>
+<tr class="odd">
+<td>read_sql_table</td>
+<td>Read a whole SQL table (using SQLAlchemy); equivalent to using a query that selects everything in that table using <code>read_sql</code></td>
+</tr>
+<tr class="even">
+<td>read_stata</td>
+<td>Read a dataset from Stata file format</td>
+</tr>
+<tr class="odd">
+<td>read_xml</td>
+<td>Read a table of data from an XML file</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="python-visualization-matplotlip-seaborn" class="slide level2">
 <h2>Python Visualization | Matplotlip &amp; Seaborn</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Matplotlip</a></li><li><a href="#tabset-3-2">Seaborn</a></li></ul>
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Matplotlip</a></li><li><a href="#tabset-5-2">Seaborn</a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1">
+<div id="tabset-5-1">
 <p>Matplotlib is the “grandfather” library of data visualization with Python. It was created by John Hunter. He created it to try to replicate MatLab’s (another programming language) plotting capabilities in Python. So if you happen to be familiar with matlab, matplotlib will feel natural to you.</p>
 <p>It is an excellent 2D and 3D graphics library for generating scientific figures.</p>
 <p>Some of the major Pros of Matplotlib are:</p>
@@ -1033,36 +1243,36 @@ dtype: int64</code></pre>
 <li>Very customizable in general</li>
 </ul>
 <p>Matplotlib allows you to create reproducible figures programmatically. Let’s learn how to use it! Before continuing this lecture, I encourage you just to explore the official Matplotlib web page: <a href="http://matplotlib.org/">http://matplotlib.org/</a></p>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="29">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="24">
+<div class="cell" data-execution_count="30">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb40-2"><a href="#cb40-2"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
-<span id="cb40-3"><a href="#cb40-3"></a>y <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb43-2"><a href="#cb43-2"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
+<span id="cb43-3"><a href="#cb43-3"></a>y <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Since we are using ipython notebook we need to run <code>%matplotlib inline</code> before running the plot</p>
-<div class="cell" data-execution_count="25">
+<div class="cell" data-execution_count="31">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>plt.plot(x, y, <span class="st">'r'</span>) <span class="co"># 'r' is the color red</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a>plt.xlabel(<span class="st">'X Axis Title Here'</span>)</span>
-<span id="cb41-3"><a href="#cb41-3"></a>plt.ylabel(<span class="st">'Y Axis Title Here'</span>)</span>
-<span id="cb41-4"><a href="#cb41-4"></a>plt.title(<span class="st">'String Title Here'</span>)</span>
-<span id="cb41-5"><a href="#cb41-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>plt.plot(x, y, <span class="st">'r'</span>) <span class="co"># 'r' is the color red</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>plt.xlabel(<span class="st">'X Axis Title Here'</span>)</span>
+<span id="cb44-3"><a href="#cb44-3"></a>plt.ylabel(<span class="st">'Y Axis Title Here'</span>)</span>
+<span id="cb44-4"><a href="#cb44-4"></a>plt.title(<span class="st">'String Title Here'</span>)</span>
+<span id="cb44-5"><a href="#cb44-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-26-output-1.png" width="808" height="449"></p>
+<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-32-output-1.png" width="808" height="449"></p>
 </div>
 </div>
 </div>
-<div id="tabset-3-2">
+<div id="tabset-5-2">
 
 </div>
 </div>
