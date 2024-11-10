@@ -53,9 +53,9 @@ Have some limited or little knowledge of Microsoft excel functions e.g `=sum(C1,
 ::: {.column width="40%"}
 ### Teaching guide
 
--   Mixed instructional guide, with the presentation but focused on getting more hard skills
+>   Mixed instructional guide, with the presentation but focused on getting more hard skills
 
--   Engagements and practice on the fly
+>   Engagements and practice on the fly
 :::
 
 ::: {.column width="60%"}
@@ -469,7 +469,7 @@ Iterations is repeating and the most common form of iteration is `for`
 Code highligt for `for`
 
 ```{python}
-#| echo: false
+#| echo: true
 #| eval: false
 
 for value in a_list:
@@ -630,7 +630,7 @@ df_data.media()
 **Read CSV**
 
 ```{python}
-#| echo: false
+#| echo: true
 #| eval: false
 
 #import pandas as pd
@@ -642,7 +642,7 @@ df.to_csv("first_dataframe.csv")
 **Read excel**
 
 ```{python}
-#| echo: false
+#| echo: true
 #| eval: false
 
 df = pd.read_excel('excel_file.xlsx', sheet = 'Sheet1')
@@ -675,7 +675,70 @@ df.to_excel('first_dataframe.xlsx', sheet_name = 'Sheet first')
 |read_stata|	Read a dataset from Stata file format
 |read_xml|	Read a table of data from an XML file
 
+
+### Pandas Data Cleaning
+
+> 80% of the work done on data is cleaning
+
+#### Dealing with missing data
+
+|Method |	Description
+|------|---------
+|dropna |	Filter axis labels based on whether values for each label have missing data, with varying thresholds for how much missing data to tolerate.
+|fillna |	Fill in missing data with some value or using an interpolation method such as "ffill" or "bfill".
+|isna |	Return Boolean values indicating which values are missing/NA.
+|notna	| Negation of `isna`, returns True for non-NA values and False for NA values.
+
+
+#### Data Transformation
+
+***Removing Duplicates***
+
+```{python}
+#| echo: true
+#| eval: false
+
+data = pd.DataFrame({"k1": ["one", "two"] * 3 + ["two"],
+                     "k2": [1, 1, 2, 3, 3, 4, 4]})
+                     
+data
+
+data.duplicated()
+
+data.drop_duplicates()
+
+data["v1"] = range(7)
+
+data
+
+data.drop_duplicates(subset=["k1"])
+
+data.drop_duplicates(["k1", "k2"], keep="last")
+
+```
+
+
 :::
+
+## Visualization
+
+The point of visualization is being able to summary data to palatable chunks, easy to read and digest. Quick glances and be able to tell a story.
+
+Humans are visual, absorbing more through image than any other thing. There are very many examples of visuals that have impacted the world I will talk about 3.
+
+
+1. **The general** [minrad maps](https://bigthink.com/wp-content/uploads/2010/07/18578322.png?fit=1200,675)
+2. **The nurse** [crimea wars](https://upload.wikimedia.org/wikipedia/commons/1/17/Nightingale-mortality.jpg)
+3. **The Doctor** [cholera maps](https://www.esri.com/arcgis-blog/wp-content/uploads/2023/12/JohnSnowCholeraMap_Detail.png)
+
+
+
+Any visual should be able to tell a story either for record purposes and future solutions, predictions.
+
+## {fullscreen=true}
+
+<iframe class="stretch" data-src="https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1"></iframe>
+
 
 
 ## Python Visualization | Matplotlip & Seaborn
@@ -723,17 +786,71 @@ plt.title('String Title Here')
 plt.show()
 ```
 
+**Bar charts**
+
+
+```{python}
+#| echo: true
+x = [10, 20, 30, 40, 50, 60]
+y = [13, 45, 23, 34, 96, 76]
+plt.title('Bar Graph')
+plt.bar(x, y, color='dodgerblue', width=5)
+plt.show()
+```
+
+
+**Pie charts**
+
+```{python}
+#| echo: true
+x = [35, 20, 30, 40, 50, 30]
+y = ['Apple', 'Bananna', 'Grapes', 'Orange', 'PineApple', 'Dragon Fruit']
+plt.title('Pie Chart')
+plt.pie(x, labels=y)
+plt.show()
+
+```
+
+
 
 ### Seaborn
+
+Seaborn module for visualization
+
+**Line Graph**
+
+```{python}
+
+#| echo: true
+
+# importing packages
+import seaborn as sns
+# loading dataset
+data = sns.load_dataset("iris")
+# draw lineplot
+sns.lineplot(x="sepal_length", y="sepal_width", data=data)
+
+```
+
+
+**Scatter Graph**
+
+```{python}
+#| echo: true
+
+data = sns.load_dataset("iris")
+sns.scatterplot(data=data)
+```
+
 
 
 :::
 
 
-## Folder Structure & File Management
+## Folder Structure & File Management {visibility="hidden"}
 
 
 
-# SQL
+# SQL {visibility="hidden"}
 
-## SQL Introduction  {.smaller}
+## SQL Introduction  {.smaller} {visibility="hidden"}
