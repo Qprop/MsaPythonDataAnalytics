@@ -322,6 +322,22 @@ that never seem to come to an end"""
 long_string
 ```
 
+```{python}
+#| echo: true
+#| eval: false
+print(first_string.capitalize())
+print(first_string.title())
+print(first_string.upper())
+print(first_string.swapcase())
+print(first_string.find('is'))
+print(first_string.replace('first', 'second'))
+print(first_string.strip())
+print(first_string.isalnum())
+print(first_string.isalpha())
+print(first_string.isdigit())
+print(first_string.isprintable())
+```
+
 
 ***List***
 
@@ -463,7 +479,24 @@ first_list
 
 ::: {.panel-tabset}
 
-### Iterations
+### Conditions & Iterations
+
+Conditions criteria where we compare values and decide what step to take.
+Example of conditional criteria `if-else` , `if-elif-else`, `while`.
+
+```{python}
+#| echo: true
+#| eval: false
+
+if condition:
+  #do something
+else:
+  #do something
+```
+
+Comparison operators go hand in hand with conditions.
+Comparison operators inculde `==` , `<=`, `>=`, `|`, `&`, `or`, `and` e.t.c
+
 
 Iterations is repeating and the most common form of iteration is `for` 
 Code highligt for `for`
@@ -718,6 +751,193 @@ data.drop_duplicates(["k1", "k2"], keep="last")
 ```
 
 
+### Date & Time
+
+- **Date:** Handles dates without time.
+- **POSIXct:** Handles date & time in calendar time.
+- **POSIXlt:** Handles date & time in local time.
+- **Hms:** Parses periods with hour, minute, and second
+- **Timestamp:** Represents a single pandas date & time
+- **Interval:** Defines an open or closed range between dates and times
+- **Time delta:** Computes time difference between different datetimes
+
+
+
+***ISO8601 datetime format***  (YYYY-MM-DD HH:MM:SS TZ)
+
+
+```{python}
+#| echo: true
+#| eval: true
+
+import datetime as dt
+import time as tm
+import pytz
+import pandas as pd
+
+```
+
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Get the current date
+dt.date.today()
+
+# Get the current date and time
+dt.datetime.now()
+```
+
+
+***Parsing dates, datetimes, and times***
+
+```{python}
+#| echo: true
+#| eval: true
+
+iso = pd.to_datetime(['2018-10-26 12:00', '2018-10-26 13:00'], utc=True)
+
+us = ['07/20/1969 20:17:40','11/19/1969 06:54:35']
+
+non_us = ['20/07/1969 20:17:40','19/11/1969 06:54:35']
+
+parts = pd.DataFrame({
+  'year' : [1969,1969,1971],
+  'month' : [7,11,2],
+  'day' : [20,19,5]
+})
+
+# Parse dates in ISO format
+pd.to_datetime(iso)
+
+# Parse dates in US format
+pd.to_datetime(us, dayfirst=False)
+
+# Parse dates in NON US format
+pd.to_datetime(non_us, dayfirst=True)
+
+# Parse dates, guessing a single format
+pd.to_datetime(iso, infer_datetime_format=True)
+
+# Parse dates in single, specified format
+pd.to_datetime(iso, format="%Y-%m-%d %H:%M:%S")
+
+# Parse dates in single, specified format
+pd.to_datetime(us, format="%m/%d/%Y %H:%M:%S")
+
+# Make dates from components
+pd.to_datetime(parts)
+```
+
+
+***Extracting components***
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Parse strings to datetimes
+dttm = pd.to_datetime(iso)
+
+# Get year from datetime pandas series
+dttm.year
+
+# Get day of the year from datetime pandas series
+dttm.day_of_year
+
+# Get month name from datetime pandas series
+dttm.month_name()
+
+# Get day name from datetime pandas series
+dttm.day_name()
+
+# Get datetime.datetime format from datetime pandas series
+dttm.to_pydatetime()
+```
+
+
+**Rounding Dates**
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Rounding dates to nearest time unit
+dttm.round('1min')
+
+# Flooring dates to nearest time unit
+dttm.floor('1min')
+
+# Ceiling dates to nearest time unit
+dttm.ceil('1min')
+```
+
+
+
+**Arithmetic**
+
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Create two datetimes
+now = dt.datetime.now()
+then = pd.Timestamp('2021-09-15 10:03:30')
+
+# Get time elapsed as timedelta object
+now - then
+
+# Get time elapsed in seconds 
+(now - then).total_seconds()
+
+# Adding a day to a datetime
+dt.datetime(2022,8,5,11,13,50) + dt.timedelta(days=1)
+```
+
+
+**Time Intervals**
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Create interval datetimes
+start_1 = pd.Timestamp('2021-10-21 03:02:10')
+finish_1 = pd.Timestamp('2022-09-15 10:03:30')
+start_2 = pd.Timestamp('2022-08-21 03:02:10')
+finish_2 = pd.Timestamp('2022-12-15 10:03:30')
+
+# Specify the interval between two datetimes
+pd.Interval(start_1, finish_1, closed='right')
+
+# Get the length of an interval
+pd.Interval(start_1, finish_1, closed='right').length
+
+# Determine if two intervals are intersecting
+pd.Interval(start_1, finish_1, closed='right').overlaps(pd.Interval(start_2, finish_2, closed='right'))
+```
+
+**Time Deltas**
+
+
+```{python}
+#| echo: true
+#| eval: true
+
+# Define a timedelta in days
+pd.Timedelta(7, "d")
+
+# Convert timedelta to seconds
+pd.Timedelta(7, "d").total_seconds()
+```
+
+
+
+
+## Joins & Merge {visibility="hidden"}
+
 :::
 
 ## Visualization
@@ -742,6 +962,15 @@ Any visual should be able to tell a story either for record purposes and future 
 
 
 ## Python Visualization | Matplotlip & Seaborn
+
+Python provides so many modules for visualization but for purposes of the training we will deal with the two most common visualiation tools.
+
+1. **matplotlib**
+1. **seaborn**
+1. plotnine
+1. altair
+1. Bokeh
+
 
 ::: {.panel-tabset}
 
@@ -812,6 +1041,31 @@ plt.show()
 ```
 
 
+**Box plots**
+
+```{python}
+
+#| echo: true
+
+# Sample data
+data = {
+    'Category': ['A']*10 + ['B']*10,
+    'Value': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+df = pd.DataFrame(data)
+
+# Box plot
+df.boxplot(by='Category')
+plt.title('Box Plot Example')
+plt.suptitle('')
+plt.xlabel('Category')
+plt.ylabel('Value')
+plt.show()
+
+```
+
+
 
 ### Seaborn
 
@@ -842,6 +1096,70 @@ data = sns.load_dataset("iris")
 sns.scatterplot(data=data)
 ```
 
+```{python}
+#| echo: true
+
+#import seaborn as sns
+
+tips = sns.load_dataset("tips")
+
+sns.scatterplot(x="total_bill", y="tip", data=tips)
+```
+
+
+
+```{python}
+#| echo: true
+
+import seaborn as sns
+
+import matplotlib.pyplot as plt
+
+
+
+
+tips = sns.load_dataset("tips")
+
+
+
+
+# customize the scatter plot
+
+sns.scatterplot(x="total_bill", y="tip", hue="sex", size="size", sizes=(50, 200), data=tips)
+
+
+
+
+# add labels and title
+
+plt.xlabel("Total Bill")
+
+plt.ylabel("Tip")
+
+plt.title("Relationship between Total Bill and Tip")
+
+
+
+
+# display the plot
+
+plt.show()
+```
+
+
+### Pandas Inbuilt Visualization
+
+* df.plot.area     
+* df.plot.barh     
+* df.plot.density  
+* df.plot.hist     
+* df.plot.line     
+* df.plot.scatter
+* df.plot.bar      
+* df.plot.box      
+* df.plot.hexbin   
+* df.plot.kde      
+* df.plot.pie
 
 
 :::
