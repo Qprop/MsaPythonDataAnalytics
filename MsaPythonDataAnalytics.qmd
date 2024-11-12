@@ -551,6 +551,11 @@ print(sys.path)
 
 NumPy, short for Numerical Python, is one of the most important foundational packages for numerical computing in Python. Numpy works with array from 1-n dimensional.
 
+
+::: {.panel-tabset}
+
+### Intro
+
 ```{python}
 
 #| echo: true
@@ -573,23 +578,176 @@ data = np.array([[1.5, -0.1, 3], [0, -3, 6.5]])
 
 data
 
+a = np.array([1,2,3])
+b = np.array([(1.5,2,3), (4,5,6)], dtype = float)
+c = np.array([[(1.5,2,3), (4,5,6)],[(3,2,1), (4,5,6)]], dtype = float)
+
+np.zeros((3,4)) #Create an array of zeros
+np.ones((2,3,4),dtype=np.int16) #Create an array of ones
+d = np.arange(10,25,5)#Create an array of evenly spaced values (step value)
+np.linspace(0,2,9) #Create an array of evenlyspaced values (number of samples)
+e = np.full((2,2),7)#Create a constant array
+f = np.eye(2) #Create a 2X2 identity matrix
+np.random.random((2,2)) #Create an array with random values
+np.empty((3,2)) #Create an empty array
+
+
 ```
 
-Array descriptors
+### Array descriptors & inspectors
 
 ```{python}
 #| echo: true
+#| eval: false
 
-data.shape
-data.dtype
-data.ndim
+
+data.shape #Array dimensions
+len(a)#Length of array
+b.ndim #Number of array dimensions
+e.size #Number of array elements
+b.dtype  #Data type of array elements
+b.dtype.name  #Name of data type
+b.astype(int). #Convert an array to a different type
 
 ```
 
+
+### Array Arithmetics
+
+```{python}
+#| echo: true
+#| eval: false
+
+g = a - b. #Subtraction
+
+np.subtract(a,b) #Subtraction
+b + a #Addition 
+
+np.add(b,a) #Addition 
+a/b #Division 
+
+np.divide(a,b) #Division 
+a * b #Multiplication 
+
+np.multiply(a,b) #Multiplication 
+np.exp(b) #Exponentiation
+np.sqrt(b) #Square root
+np.sin(a)  #Print sines of an array
+np.cos(b) #Elementwise cosine
+np.log(a)#Elementwise natural logarithm
+e.dot(f) #Dot product 
+
+ 
+```
+
+
+**Comparison**
+
+```{python}
+#| echo: true
+#| eval: false
+
+a == b #Elementwise comparison
+
+a< 2 #Elementwise comparison
+
+np.array_equal(a, b) #Arraywise comparison
+```
+
+
+**Sorting Arrays**
+
+```{python}
+#| echo: true
+#| eval: false
+
+a.sort() #Sort an array
+c.sort(axis=0) #Sort the elements of an array's axis
+```
+
+
+
+**Subsetting, slicing, indexing
+
+```{python}
+#| echo: true
+#| eval: false
+
+a[2] #Select the element at the 2nd index
+
+b[1,2] #Select the element at row 1 column 2(equivalent to b[1][2])
+
+
+a[0:2]#Select items at index 0 and 1
+
+b[0:2,1] #Select items at rows 0 and 1 in column 1
+
+b[:1] #Select all items at row0(equivalent to b[0:1, :])
+
+c[1,...] #Same as[1,:,:]
+
+a[ : : -1] #Reversed array a array([3, 2, 1])
+
+a[a<2] #Select elements from a less than 2
+
+b[[1,0,1, 0],[0,1, 2, 0]] #Select elements(1,0),(0,1),(1,2) and(0,0)
+
+b[[1,0,1, 0]][:,[0,1,2,0]] #Select a subset of the matrix’s rows and columns
+
+
+
+
+```
+
+
+### Array Manipulation
+
+```{python}
+#| echo: true
+#| eval: false
+
+i = np.transpose(b) #Permute array dimensions
+i.T #Permute array dimensions
+
+b.ravel() #Flatten the array
+g.reshape(3, -2) #Reshape, but don’t change data
+
+h.resize((2,6)) #Return a new arraywith shape(2,6)
+np.append(h,g) #Append items to an array
+np.insert(a,1,5)  #Insert items in an array
+np.delete(a,[1])  #Delete items from an array
+
+
+np.concatenate((a,d),axis=0) #Concatenate arrays
+
+np.vstack((a,b) #Stack arrays vertically(row wise)
+
+np.r_[e,f] #Stack arrays vertically(row wise)
+np.hstack((e,f)) #Stack arrays horizontally(column wise)
+
+np.column_stack((a,d)) #Create stacked column wise arrays
+
+np.c_[a,d] #Create stacked column wise arrays
+
+
+np.hsplit(a,3) #Split the array horizontally at the 3rd index
+
+np.vsplit(c,2) #Split the array vertically at the 2nd index
+
+```
+
+:::
 
 ## Python Pandas | Introduction
 
 ***Pandas*** : Python module/library enhancing data manipulation tools designed to make data cleaning and analysis fast and convenient in Python. Works intandem with *numpy* and is the core working under the hood.
+
+
+
+::: {.panel-tabset}
+
+### Intro
+
 
 ```{python}
 #| echo: true
@@ -603,11 +761,6 @@ obj_series
 ```
 
 Main difference of pandas with numpy is that it has indexed values and designed for working with tabular or heterogeneous data.
-
-
-::: {.panel-tabset}
-
-### Intro
 
 Pandas relies on dataframes this is excel like data format with rows/records and columns/fields. Which mankes it easy to work with. 
 
@@ -936,7 +1089,101 @@ pd.Timedelta(7, "d").total_seconds()
 
 
 
-## Joins & Merge {visibility="hidden"}
+### Joins & Merge 
+
+**Merge***
+
+```{python}
+#| echo: true
+#| eval: false
+
+df1 = pd.DataFrame({'employee': ['Bob', 'Jake', 'Lisa', 'Sue'],
+                    'group': ['Accounting', 'Engineering', 'Engineering', 'HR']})
+df2 = pd.DataFrame({'employee': ['Lisa', 'Bob', 'Jake', 'Sue'],
+                    'hire_date': [2004, 2008, 2012, 2014]})
+
+df3 = pd.merge(df1, df2)
+df3
+
+
+df4 = pd.DataFrame({'group': ['Accounting', 'Engineering', 'HR'],
+                    'supervisor': ['Carly', 'Guido', 'Steve']})
+                    
+pd.merge(df3, df4)
+
+#Many-to-many joins
+
+df5 = pd.DataFrame({'group': ['Accounting', 'Accounting',
+                              'Engineering', 'Engineering', 'HR', 'HR'],
+                    'skills': ['math', 'spreadsheets', 'coding', 'linux',
+                               'spreadsheets', 'organization']})
+                               
+pd.merge(df1, df5)
+
+
+df3 = pd.DataFrame({'name': ['Bob', 'Jake', 'Lisa', 'Sue'],
+                    'salary': [70000, 80000, 120000, 90000]})
+                    
+pd.merge(df1, df3, left_on="employee", right_on="name")
+
+#Drop redundant column
+pd.merge(df1, df3, left_on="employee", right_on="name").drop('name', axis=1)
+
+```
+
+
+**Join**
+
+```{python}
+#| echo: true
+#| eval: false
+
+df1a = df1.set_index('employee')
+df2a = df2.set_index('employee')
+
+pd.merge(df1a, df2a, left_index=True, right_index=True)
+
+
+#For convenience, DataFrames implement the join() method, which performs a merge that defaults to joining on indices:
+
+df1a.join(df2a)
+
+
+
+df6 = pd.DataFrame({'name': ['Peter', 'Paul', 'Mary'],
+                    'food': ['fish', 'beans', 'bread']},
+                   columns=['name', 'food'])
+df7 = pd.DataFrame({'name': ['Mary', 'Joseph'],
+                    'drink': ['wine', 'beer']},
+                   columns=['name', 'drink'])
+                   
+                   
+pd.merge(df6, df7)
+
+#Inner Join
+
+pd.merge(df6, df7, how='inner')
+
+#Other options for the how keyword are 'outer', 'left', and 'right'. An outer join returns a join over the union of the input columns, and fills in all missing values with NAs
+
+pd.merge(df6, df7, how='outer')
+
+
+pd.merge(df6, df7, how='left')
+
+
+```
+
+
+### Let us get our hands dirty
+
+From the google drive link request for access and download the data [google drive](https://drive.google.com/drive/folders/1BkcXX95KMn_6b_Y8KwjAkGjzMtogWxd7?usp=sharing)
+
+1. Download the state data
+1. Merge the three different csv's
+1. Rank the population density for the different states in 2010
+  - population density calculation = population size / state size area
+1. Top 3 states
 
 :::
 
