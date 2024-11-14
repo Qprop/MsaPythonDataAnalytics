@@ -901,7 +901,133 @@ data.drop_duplicates(subset=["k1"])
 
 data.drop_duplicates(["k1", "k2"], keep="last")
 
+data.sort_values(by = 'k1') #sort
+
+
 ```
+
+
+**Sample Cleaning**
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Reading data using pandas
+df = pd.read_csv("https://rcs.bu.edu/examples/python/DataAnalysis/Salaries.csv")
+# List first 5 records
+df.head()
+
+#Select column
+
+df['sex']
+df.sex
+
+# #Group data using rank
+df_rank = df.groupby(["rank"])
+
+df_rank.head()
+
+# #Calculate mean value for each numeric column per each group
+df_rank.mean()
+
+# Once groupby object is created we can calculate various statistics for each group:
+
+#Calculate mean salary for each professor rank:
+df.groupby('rank')[['salary']].mean()
+
+# Note: If single brackets are used to specify the column (e.g. salary), then the output is Pandas Series object.
+# When double brackets are used the output is a Data Frame
+
+
+#Calculate mean salary for each professor rank:
+df.groupby(['rank'], sort=False)[['salary']].mean()
+
+
+# subset the rows in which the salary value is greater than $120K: 
+df_sub = df[df['salary'] > 120000]
+df_sub.head()
+
+#Select only those rows that contain female professors:
+df_f = df[df['sex'] == 'Female']
+
+#Selecting rows
+df[0:10]
+
+#Select rows by their labels:
+df_sub.loc[10:20,['rank','sex','salary']]
+
+
+#Select rows by their labels:
+df_sub.iloc[10:20,[0, 3, 4, 5]]
+
+
+#We can sort the data using 2 or more columns:
+df_sorted = df.sort_values( by =['service', 'salary'], ascending = [True, False])
+df_sorted.head(10)
+
+
+
+```
+
+
+**Sample 2***
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Read a dataset with missing values
+flights = pd.read_csv("https://rcs.bu.edu/examples/python/DataAnalysis/flights.csv")
+
+# Select the rows that have at least one missing value
+flights[flights.isnull().any(axis=1)].head()
+
+
+#There are a number of methods to deal with missing values in the data frame:
+   
+#df.dropna(): drop missing observations
+#df.dropna(how = "all"):  drop observtions where all cells is NA
+#df.dropna(axis = 1,how = "all"): drop column if all the values are missing
+#df.dropna(thresh = 5): Drop rows that contain less than 5 non-missing values
+#df.fillna(0): Replace missing values with zeros
+#df.isnull(): returns True if the value is missing
+#df.notnull(): Returns True for non-missing values
+
+
+```
+
+
+#### Aggregation Functions in Pandas
+
+Aggregation - computing a summary statistic about each group, i.e.
+compute group sums or means
+compute group sizes/counts
+
+Common aggregation functions:
+
+min, max
+count, sum, prod
+mean, median, mode, mad
+std, var
+
+```{python}
+#| echo: true
+#| eval: false
+
+flights[['dep_delay','arr_delay']].agg(['min','mean','max'])
+
+flights.groupby('origin').count()
+
+flights['origin'].value_counts()
+
+
+
+
+
+```
+
+
 
 
 ### Date & Time
@@ -1175,6 +1301,7 @@ pd.merge(df6, df7, how='left')
 ```
 
 
+
 ### Let us get our hands dirty
 
 From the google drive link request for access and download the data [google drive](https://drive.google.com/drive/folders/1BkcXX95KMn_6b_Y8KwjAkGjzMtogWxd7?usp=sharing)
@@ -1184,6 +1311,99 @@ From the google drive link request for access and download the data [google driv
 1. Rank the population density for the different states in 2010
   - population density calculation = population size / state size area
 1. Top 3 states
+
+### Bonus material
+
+**Collapsing data into categories**
+Map categories to fewer ones: reducing categories in categorical column.
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Create mapping dictionary and replace
+mapping = {'Microsoft':'ComputerOS', 'MacOS':'ComputerOS', 'Linux':'ComputerOS',
+'IOS':'MobileOS', 'Android':'MobileOS'}
+devices['operating_system'] = devices['operating_system'].replace(mapping)
+devices['operating_system'].unique()
+
+
+# Replace "+" with "00"
+phones["Phone number"] = phones["Phone number"].str.replace("+", "00")
+phones
+
+# Replace "-" with nothing
+phones["Phone number"] = phones["Phone number"].str.replace("-", "")
+phones
+
+
+# Replace phone numbers with lower than 10 digits to NaN
+digits = phones['Phone number'].str.len()
+phones.loc[digits < 10, "Phone number"] = np.nan
+phones
+
+
+# Replace letters with nothing
+phones['Phone number'] = phones['Phone number'].str.replace(r'\D+', '')
+phones.head()
+
+
+# Treating date data
+birthdays['Birthday'] = birthdays['Birthday'].dt.strftime("%d-%m-%Y")
+birthdays.head()
+
+
+sum_classes = flights[['economy_class', 'business_class', 'first_class']].sum(axis = 1)
+passenger_equ = sum_classes == flights['total_passengers']
+# Find and filter out rows with inconsistent passengers
+inconsistent_pass = flights[~passenger_equ]
+consistent_pass = flights[passenger_equ]
+
+
+# Drop missing values
+airquality_dropped = airquality.dropna(subset = ['CO2'])
+airquality_dropped.head()
+
+#Replacing with statistical measures
+co2_mean = airquality['CO2'].mean()
+airquality_imputed = airquality.fillna({'CO2': co2_mean})
+airquality_imputed.head()
+
+
+# Multiple grouped summaries
+dogs.groupby("color")["weight_kg"].agg([min, max, sum])
+
+# Grouping by multiple variables
+dogs.groupby(["color", "breed"])["weight_kg"].mean()
+
+dogs.groupby(["color", "breed"])[["weight_kg", "height_cm"]].mean()
+
+
+
+# Group by to pivot table
+dogs.pivot_table(values="weight_kg", index="color")
+
+
+# Different statistics
+import numpy as np
+dogs.pivot_table(values="weight_kg", index="color", aggfunc=np.median)
+
+# Multiple statistics
+dogs.pivot_table(values="weight_kg", index="color", aggfunc=[np.mean, np.median])
+
+dogs.pivot_table(values="weight_kg", index="color", columns="breed")
+
+# Filling missing values in pivot tables
+dogs.pivot_table(values="weight_kg", index="color", columns="breed", 
+fill_value=0)
+
+# Summing with pivot tables
+dogs.pivot_table(values="weight_kg", index="color", columns="breed",
+fill_value=0, margins=True)
+
+
+```
+
 
 :::
 

@@ -1181,7 +1181,7 @@ Customs</code></pre>
 <h2>Python Pandas | Introduction</h2>
 <p><strong><em>Pandas</em></strong> : Python module/library enhancing data manipulation tools designed to make data cleaning and analysis fast and convenient in Python. Works intandem with <em>numpy</em> and is the core working under the hood.</p>
 <div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Intro</a></li><li><a href="#tabset-5-2">Pandas Summary</a></li><li><a href="#tabset-5-3">Pandas Import/Export [Read/Write]</a></li><li><a href="#tabset-5-4">Pandas Data Cleaning</a></li><li><a href="#tabset-5-5">Date &amp; Time</a></li><li><a href="#tabset-5-6">Joins &amp; Merge</a></li><li><a href="#tabset-5-7">Let us get our hands dirty</a></li></ul>
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Intro</a></li><li><a href="#tabset-5-2">Pandas Summary</a></li><li><a href="#tabset-5-3">Pandas Import/Export [Read/Write]</a></li><li><a href="#tabset-5-4">Pandas Data Cleaning</a></li><li><a href="#tabset-5-5">Date &amp; Time</a></li><li><a href="#tabset-5-6">Joins &amp; Merge</a></li><li><a href="#tabset-5-7">Let us get our hands dirty</a></li><li><a href="#tabset-5-8">Bonus material</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1">
 <div class="cell" data-execution_count="30">
@@ -1461,7 +1461,103 @@ dtype: int64</code></pre>
 <span id="cb51-13"><a href="#cb51-13"></a></span>
 <span id="cb51-14"><a href="#cb51-14"></a>data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"k1"</span>])</span>
 <span id="cb51-15"><a href="#cb51-15"></a></span>
-<span id="cb51-16"><a href="#cb51-16"></a>data.drop_duplicates([<span class="st">"k1"</span>, <span class="st">"k2"</span>], keep<span class="op">=</span><span class="st">"last"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb51-16"><a href="#cb51-16"></a>data.drop_duplicates([<span class="st">"k1"</span>, <span class="st">"k2"</span>], keep<span class="op">=</span><span class="st">"last"</span>)</span>
+<span id="cb51-17"><a href="#cb51-17"></a></span>
+<span id="cb51-18"><a href="#cb51-18"></a>data.sort_values(by <span class="op">=</span> <span class="st">'k1'</span>) <span class="co">#sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Sample Cleaning</strong></p>
+<div class="cell" data-execution_count="37">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># Reading data using pandas</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://rcs.bu.edu/examples/python/DataAnalysis/Salaries.csv"</span>)</span>
+<span id="cb52-3"><a href="#cb52-3"></a><span class="co"># List first 5 records</span></span>
+<span id="cb52-4"><a href="#cb52-4"></a>df.head()</span>
+<span id="cb52-5"><a href="#cb52-5"></a></span>
+<span id="cb52-6"><a href="#cb52-6"></a><span class="co">#Select column</span></span>
+<span id="cb52-7"><a href="#cb52-7"></a></span>
+<span id="cb52-8"><a href="#cb52-8"></a>df[<span class="st">'sex'</span>]</span>
+<span id="cb52-9"><a href="#cb52-9"></a>df.sex</span>
+<span id="cb52-10"><a href="#cb52-10"></a></span>
+<span id="cb52-11"><a href="#cb52-11"></a><span class="co"># #Group data using rank</span></span>
+<span id="cb52-12"><a href="#cb52-12"></a>df_rank <span class="op">=</span> df.groupby([<span class="st">"rank"</span>])</span>
+<span id="cb52-13"><a href="#cb52-13"></a></span>
+<span id="cb52-14"><a href="#cb52-14"></a>df_rank.head()</span>
+<span id="cb52-15"><a href="#cb52-15"></a></span>
+<span id="cb52-16"><a href="#cb52-16"></a><span class="co"># #Calculate mean value for each numeric column per each group</span></span>
+<span id="cb52-17"><a href="#cb52-17"></a>df_rank.mean()</span>
+<span id="cb52-18"><a href="#cb52-18"></a></span>
+<span id="cb52-19"><a href="#cb52-19"></a><span class="co"># Once groupby object is created we can calculate various statistics for each group:</span></span>
+<span id="cb52-20"><a href="#cb52-20"></a></span>
+<span id="cb52-21"><a href="#cb52-21"></a><span class="co">#Calculate mean salary for each professor rank:</span></span>
+<span id="cb52-22"><a href="#cb52-22"></a>df.groupby(<span class="st">'rank'</span>)[[<span class="st">'salary'</span>]].mean()</span>
+<span id="cb52-23"><a href="#cb52-23"></a></span>
+<span id="cb52-24"><a href="#cb52-24"></a><span class="co"># Note: If single brackets are used to specify the column (e.g. salary), then the output is Pandas Series object.</span></span>
+<span id="cb52-25"><a href="#cb52-25"></a><span class="co"># When double brackets are used the output is a Data Frame</span></span>
+<span id="cb52-26"><a href="#cb52-26"></a></span>
+<span id="cb52-27"><a href="#cb52-27"></a></span>
+<span id="cb52-28"><a href="#cb52-28"></a><span class="co">#Calculate mean salary for each professor rank:</span></span>
+<span id="cb52-29"><a href="#cb52-29"></a>df.groupby([<span class="st">'rank'</span>], sort<span class="op">=</span><span class="va">False</span>)[[<span class="st">'salary'</span>]].mean()</span>
+<span id="cb52-30"><a href="#cb52-30"></a></span>
+<span id="cb52-31"><a href="#cb52-31"></a></span>
+<span id="cb52-32"><a href="#cb52-32"></a><span class="co"># subset the rows in which the salary value is greater than $120K: </span></span>
+<span id="cb52-33"><a href="#cb52-33"></a>df_sub <span class="op">=</span> df[df[<span class="st">'salary'</span>] <span class="op">&gt;</span> <span class="dv">120000</span>]</span>
+<span id="cb52-34"><a href="#cb52-34"></a>df_sub.head()</span>
+<span id="cb52-35"><a href="#cb52-35"></a></span>
+<span id="cb52-36"><a href="#cb52-36"></a><span class="co">#Select only those rows that contain female professors:</span></span>
+<span id="cb52-37"><a href="#cb52-37"></a>df_f <span class="op">=</span> df[df[<span class="st">'sex'</span>] <span class="op">==</span> <span class="st">'Female'</span>]</span>
+<span id="cb52-38"><a href="#cb52-38"></a></span>
+<span id="cb52-39"><a href="#cb52-39"></a><span class="co">#Selecting rows</span></span>
+<span id="cb52-40"><a href="#cb52-40"></a>df[<span class="dv">0</span>:<span class="dv">10</span>]</span>
+<span id="cb52-41"><a href="#cb52-41"></a></span>
+<span id="cb52-42"><a href="#cb52-42"></a><span class="co">#Select rows by their labels:</span></span>
+<span id="cb52-43"><a href="#cb52-43"></a>df_sub.loc[<span class="dv">10</span>:<span class="dv">20</span>,[<span class="st">'rank'</span>,<span class="st">'sex'</span>,<span class="st">'salary'</span>]]</span>
+<span id="cb52-44"><a href="#cb52-44"></a></span>
+<span id="cb52-45"><a href="#cb52-45"></a></span>
+<span id="cb52-46"><a href="#cb52-46"></a><span class="co">#Select rows by their labels:</span></span>
+<span id="cb52-47"><a href="#cb52-47"></a>df_sub.iloc[<span class="dv">10</span>:<span class="dv">20</span>,[<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]]</span>
+<span id="cb52-48"><a href="#cb52-48"></a></span>
+<span id="cb52-49"><a href="#cb52-49"></a></span>
+<span id="cb52-50"><a href="#cb52-50"></a><span class="co">#We can sort the data using 2 or more columns:</span></span>
+<span id="cb52-51"><a href="#cb52-51"></a>df_sorted <span class="op">=</span> df.sort_values( by <span class="op">=</span>[<span class="st">'service'</span>, <span class="st">'salary'</span>], ascending <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>])</span>
+<span id="cb52-52"><a href="#cb52-52"></a>df_sorted.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Sample 2</strong>*</p>
+<div class="cell" data-execution_count="38">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># Read a dataset with missing values</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a>flights <span class="op">=</span> pd.read_csv(<span class="st">"https://rcs.bu.edu/examples/python/DataAnalysis/flights.csv"</span>)</span>
+<span id="cb53-3"><a href="#cb53-3"></a></span>
+<span id="cb53-4"><a href="#cb53-4"></a><span class="co"># Select the rows that have at least one missing value</span></span>
+<span id="cb53-5"><a href="#cb53-5"></a>flights[flights.isnull().<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)].head()</span>
+<span id="cb53-6"><a href="#cb53-6"></a></span>
+<span id="cb53-7"><a href="#cb53-7"></a></span>
+<span id="cb53-8"><a href="#cb53-8"></a><span class="co">#There are a number of methods to deal with missing values in the data frame:</span></span>
+<span id="cb53-9"><a href="#cb53-9"></a>   </span>
+<span id="cb53-10"><a href="#cb53-10"></a><span class="co">#df.dropna(): drop missing observations</span></span>
+<span id="cb53-11"><a href="#cb53-11"></a><span class="co">#df.dropna(how = "all"):  drop observtions where all cells is NA</span></span>
+<span id="cb53-12"><a href="#cb53-12"></a><span class="co">#df.dropna(axis = 1,how = "all"): drop column if all the values are missing</span></span>
+<span id="cb53-13"><a href="#cb53-13"></a><span class="co">#df.dropna(thresh = 5): Drop rows that contain less than 5 non-missing values</span></span>
+<span id="cb53-14"><a href="#cb53-14"></a><span class="co">#df.fillna(0): Replace missing values with zeros</span></span>
+<span id="cb53-15"><a href="#cb53-15"></a><span class="co">#df.isnull(): returns True if the value is missing</span></span>
+<span id="cb53-16"><a href="#cb53-16"></a><span class="co">#df.notnull(): Returns True for non-missing values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<h4 id="aggregation-functions-in-pandas">Aggregation Functions in Pandas</h4>
+<p>Aggregation - computing a summary statistic about each group, i.e. compute group sums or means compute group sizes/counts</p>
+<p>Common aggregation functions:</p>
+<p>min, max count, sum, prod mean, median, mode, mad std, var</p>
+<div class="cell" data-execution_count="39">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>flights[[<span class="st">'dep_delay'</span>,<span class="st">'arr_delay'</span>]].agg([<span class="st">'min'</span>,<span class="st">'mean'</span>,<span class="st">'max'</span>])</span>
+<span id="cb54-2"><a href="#cb54-2"></a></span>
+<span id="cb54-3"><a href="#cb54-3"></a>flights.groupby(<span class="st">'origin'</span>).count()</span>
+<span id="cb54-4"><a href="#cb54-4"></a></span>
+<span id="cb54-5"><a href="#cb54-5"></a>flights[<span class="st">'origin'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1476,64 +1572,64 @@ dtype: int64</code></pre>
 <li><strong>Time delta:</strong> Computes time difference between different datetimes</li>
 </ul>
 <p><strong><em>ISO8601 datetime format</em></strong> (YYYY-MM-DD HH:MM:SS TZ)</p>
-<div class="cell" data-execution_count="37">
+<div class="cell" data-execution_count="40">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt</span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="im">import</span> time <span class="im">as</span> tm</span>
-<span id="cb52-3"><a href="#cb52-3"></a><span class="im">import</span> pytz</span>
-<span id="cb52-4"><a href="#cb52-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt</span>
+<span id="cb55-2"><a href="#cb55-2"></a><span class="im">import</span> time <span class="im">as</span> tm</span>
+<span id="cb55-3"><a href="#cb55-3"></a><span class="im">import</span> pytz</span>
+<span id="cb55-4"><a href="#cb55-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="38">
+<div class="cell" data-execution_count="41">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># Get the current date</span></span>
-<span id="cb53-2"><a href="#cb53-2"></a>dt.date.today()</span>
-<span id="cb53-3"><a href="#cb53-3"></a></span>
-<span id="cb53-4"><a href="#cb53-4"></a><span class="co"># Get the current date and time</span></span>
-<span id="cb53-5"><a href="#cb53-5"></a>dt.datetime.now()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># Get the current date</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a>dt.date.today()</span>
+<span id="cb56-3"><a href="#cb56-3"></a></span>
+<span id="cb56-4"><a href="#cb56-4"></a><span class="co"># Get the current date and time</span></span>
+<span id="cb56-5"><a href="#cb56-5"></a>dt.datetime.now()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>datetime.datetime(2024, 11, 13, 23, 24, 38, 921486)</code></pre>
+<pre><code>datetime.datetime(2024, 11, 14, 23, 23, 3, 520602)</code></pre>
 </div>
 </div>
 <p><strong><em>Parsing dates, datetimes, and times</em></strong></p>
-<div class="cell" data-execution_count="39">
+<div class="cell" data-execution_count="42">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>iso <span class="op">=</span> pd.to_datetime([<span class="st">'2018-10-26 12:00'</span>, <span class="st">'2018-10-26 13:00'</span>], utc<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb55-2"><a href="#cb55-2"></a></span>
-<span id="cb55-3"><a href="#cb55-3"></a>us <span class="op">=</span> [<span class="st">'07/20/1969 20:17:40'</span>,<span class="st">'11/19/1969 06:54:35'</span>]</span>
-<span id="cb55-4"><a href="#cb55-4"></a></span>
-<span id="cb55-5"><a href="#cb55-5"></a>non_us <span class="op">=</span> [<span class="st">'20/07/1969 20:17:40'</span>,<span class="st">'19/11/1969 06:54:35'</span>]</span>
-<span id="cb55-6"><a href="#cb55-6"></a></span>
-<span id="cb55-7"><a href="#cb55-7"></a>parts <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb55-8"><a href="#cb55-8"></a>  <span class="st">'year'</span> : [<span class="dv">1969</span>,<span class="dv">1969</span>,<span class="dv">1971</span>],</span>
-<span id="cb55-9"><a href="#cb55-9"></a>  <span class="st">'month'</span> : [<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">2</span>],</span>
-<span id="cb55-10"><a href="#cb55-10"></a>  <span class="st">'day'</span> : [<span class="dv">20</span>,<span class="dv">19</span>,<span class="dv">5</span>]</span>
-<span id="cb55-11"><a href="#cb55-11"></a>})</span>
-<span id="cb55-12"><a href="#cb55-12"></a></span>
-<span id="cb55-13"><a href="#cb55-13"></a><span class="co"># Parse dates in ISO format</span></span>
-<span id="cb55-14"><a href="#cb55-14"></a>pd.to_datetime(iso)</span>
-<span id="cb55-15"><a href="#cb55-15"></a></span>
-<span id="cb55-16"><a href="#cb55-16"></a><span class="co"># Parse dates in US format</span></span>
-<span id="cb55-17"><a href="#cb55-17"></a>pd.to_datetime(us, dayfirst<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb55-18"><a href="#cb55-18"></a></span>
-<span id="cb55-19"><a href="#cb55-19"></a><span class="co"># Parse dates in NON US format</span></span>
-<span id="cb55-20"><a href="#cb55-20"></a>pd.to_datetime(non_us, dayfirst<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb55-21"><a href="#cb55-21"></a></span>
-<span id="cb55-22"><a href="#cb55-22"></a><span class="co"># Parse dates, guessing a single format</span></span>
-<span id="cb55-23"><a href="#cb55-23"></a>pd.to_datetime(iso, infer_datetime_format<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb55-24"><a href="#cb55-24"></a></span>
-<span id="cb55-25"><a href="#cb55-25"></a><span class="co"># Parse dates in single, specified format</span></span>
-<span id="cb55-26"><a href="#cb55-26"></a>pd.to_datetime(iso, <span class="bu">format</span><span class="op">=</span><span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S"</span>)</span>
-<span id="cb55-27"><a href="#cb55-27"></a></span>
-<span id="cb55-28"><a href="#cb55-28"></a><span class="co"># Parse dates in single, specified format</span></span>
-<span id="cb55-29"><a href="#cb55-29"></a>pd.to_datetime(us, <span class="bu">format</span><span class="op">=</span><span class="st">"%m/</span><span class="sc">%d</span><span class="st">/%Y %H:%M:%S"</span>)</span>
-<span id="cb55-30"><a href="#cb55-30"></a></span>
-<span id="cb55-31"><a href="#cb55-31"></a><span class="co"># Make dates from components</span></span>
-<span id="cb55-32"><a href="#cb55-32"></a>pd.to_datetime(parts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>iso <span class="op">=</span> pd.to_datetime([<span class="st">'2018-10-26 12:00'</span>, <span class="st">'2018-10-26 13:00'</span>], utc<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb58-2"><a href="#cb58-2"></a></span>
+<span id="cb58-3"><a href="#cb58-3"></a>us <span class="op">=</span> [<span class="st">'07/20/1969 20:17:40'</span>,<span class="st">'11/19/1969 06:54:35'</span>]</span>
+<span id="cb58-4"><a href="#cb58-4"></a></span>
+<span id="cb58-5"><a href="#cb58-5"></a>non_us <span class="op">=</span> [<span class="st">'20/07/1969 20:17:40'</span>,<span class="st">'19/11/1969 06:54:35'</span>]</span>
+<span id="cb58-6"><a href="#cb58-6"></a></span>
+<span id="cb58-7"><a href="#cb58-7"></a>parts <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb58-8"><a href="#cb58-8"></a>  <span class="st">'year'</span> : [<span class="dv">1969</span>,<span class="dv">1969</span>,<span class="dv">1971</span>],</span>
+<span id="cb58-9"><a href="#cb58-9"></a>  <span class="st">'month'</span> : [<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">2</span>],</span>
+<span id="cb58-10"><a href="#cb58-10"></a>  <span class="st">'day'</span> : [<span class="dv">20</span>,<span class="dv">19</span>,<span class="dv">5</span>]</span>
+<span id="cb58-11"><a href="#cb58-11"></a>})</span>
+<span id="cb58-12"><a href="#cb58-12"></a></span>
+<span id="cb58-13"><a href="#cb58-13"></a><span class="co"># Parse dates in ISO format</span></span>
+<span id="cb58-14"><a href="#cb58-14"></a>pd.to_datetime(iso)</span>
+<span id="cb58-15"><a href="#cb58-15"></a></span>
+<span id="cb58-16"><a href="#cb58-16"></a><span class="co"># Parse dates in US format</span></span>
+<span id="cb58-17"><a href="#cb58-17"></a>pd.to_datetime(us, dayfirst<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb58-18"><a href="#cb58-18"></a></span>
+<span id="cb58-19"><a href="#cb58-19"></a><span class="co"># Parse dates in NON US format</span></span>
+<span id="cb58-20"><a href="#cb58-20"></a>pd.to_datetime(non_us, dayfirst<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb58-21"><a href="#cb58-21"></a></span>
+<span id="cb58-22"><a href="#cb58-22"></a><span class="co"># Parse dates, guessing a single format</span></span>
+<span id="cb58-23"><a href="#cb58-23"></a>pd.to_datetime(iso, infer_datetime_format<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb58-24"><a href="#cb58-24"></a></span>
+<span id="cb58-25"><a href="#cb58-25"></a><span class="co"># Parse dates in single, specified format</span></span>
+<span id="cb58-26"><a href="#cb58-26"></a>pd.to_datetime(iso, <span class="bu">format</span><span class="op">=</span><span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S"</span>)</span>
+<span id="cb58-27"><a href="#cb58-27"></a></span>
+<span id="cb58-28"><a href="#cb58-28"></a><span class="co"># Parse dates in single, specified format</span></span>
+<span id="cb58-29"><a href="#cb58-29"></a>pd.to_datetime(us, <span class="bu">format</span><span class="op">=</span><span class="st">"%m/</span><span class="sc">%d</span><span class="st">/%Y %H:%M:%S"</span>)</span>
+<span id="cb58-30"><a href="#cb58-30"></a></span>
+<span id="cb58-31"><a href="#cb58-31"></a><span class="co"># Make dates from components</span></span>
+<span id="cb58-32"><a href="#cb58-32"></a>pd.to_datetime(parts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>0   1969-07-20
@@ -1543,26 +1639,26 @@ dtype: datetime64[ns]</code></pre>
 </div>
 </div>
 <p><strong><em>Extracting components</em></strong></p>
-<div class="cell" data-execution_count="40">
+<div class="cell" data-execution_count="43">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a><span class="co"># Parse strings to datetimes</span></span>
-<span id="cb57-2"><a href="#cb57-2"></a>dttm <span class="op">=</span> pd.to_datetime(iso)</span>
-<span id="cb57-3"><a href="#cb57-3"></a></span>
-<span id="cb57-4"><a href="#cb57-4"></a><span class="co"># Get year from datetime pandas series</span></span>
-<span id="cb57-5"><a href="#cb57-5"></a>dttm.year</span>
-<span id="cb57-6"><a href="#cb57-6"></a></span>
-<span id="cb57-7"><a href="#cb57-7"></a><span class="co"># Get day of the year from datetime pandas series</span></span>
-<span id="cb57-8"><a href="#cb57-8"></a>dttm.day_of_year</span>
-<span id="cb57-9"><a href="#cb57-9"></a></span>
-<span id="cb57-10"><a href="#cb57-10"></a><span class="co"># Get month name from datetime pandas series</span></span>
-<span id="cb57-11"><a href="#cb57-11"></a>dttm.month_name()</span>
-<span id="cb57-12"><a href="#cb57-12"></a></span>
-<span id="cb57-13"><a href="#cb57-13"></a><span class="co"># Get day name from datetime pandas series</span></span>
-<span id="cb57-14"><a href="#cb57-14"></a>dttm.day_name()</span>
-<span id="cb57-15"><a href="#cb57-15"></a></span>
-<span id="cb57-16"><a href="#cb57-16"></a><span class="co"># Get datetime.datetime format from datetime pandas series</span></span>
-<span id="cb57-17"><a href="#cb57-17"></a>dttm.to_pydatetime()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># Parse strings to datetimes</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a>dttm <span class="op">=</span> pd.to_datetime(iso)</span>
+<span id="cb60-3"><a href="#cb60-3"></a></span>
+<span id="cb60-4"><a href="#cb60-4"></a><span class="co"># Get year from datetime pandas series</span></span>
+<span id="cb60-5"><a href="#cb60-5"></a>dttm.year</span>
+<span id="cb60-6"><a href="#cb60-6"></a></span>
+<span id="cb60-7"><a href="#cb60-7"></a><span class="co"># Get day of the year from datetime pandas series</span></span>
+<span id="cb60-8"><a href="#cb60-8"></a>dttm.day_of_year</span>
+<span id="cb60-9"><a href="#cb60-9"></a></span>
+<span id="cb60-10"><a href="#cb60-10"></a><span class="co"># Get month name from datetime pandas series</span></span>
+<span id="cb60-11"><a href="#cb60-11"></a>dttm.month_name()</span>
+<span id="cb60-12"><a href="#cb60-12"></a></span>
+<span id="cb60-13"><a href="#cb60-13"></a><span class="co"># Get day name from datetime pandas series</span></span>
+<span id="cb60-14"><a href="#cb60-14"></a>dttm.day_name()</span>
+<span id="cb60-15"><a href="#cb60-15"></a></span>
+<span id="cb60-16"><a href="#cb60-16"></a><span class="co"># Get datetime.datetime format from datetime pandas series</span></span>
+<span id="cb60-17"><a href="#cb60-17"></a>dttm.to_pydatetime()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>array([datetime.datetime(2018, 10, 26, 12, 0, tzinfo=datetime.timezone.utc),
@@ -1571,75 +1667,75 @@ dtype: datetime64[ns]</code></pre>
 </div>
 </div>
 <p><strong>Rounding Dates</strong></p>
-<div class="cell" data-execution_count="41">
+<div class="cell" data-execution_count="44">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a><span class="co"># Rounding dates to nearest time unit</span></span>
-<span id="cb59-2"><a href="#cb59-2"></a>dttm.<span class="bu">round</span>(<span class="st">'1min'</span>)</span>
-<span id="cb59-3"><a href="#cb59-3"></a></span>
-<span id="cb59-4"><a href="#cb59-4"></a><span class="co"># Flooring dates to nearest time unit</span></span>
-<span id="cb59-5"><a href="#cb59-5"></a>dttm.floor(<span class="st">'1min'</span>)</span>
-<span id="cb59-6"><a href="#cb59-6"></a></span>
-<span id="cb59-7"><a href="#cb59-7"></a><span class="co"># Ceiling dates to nearest time unit</span></span>
-<span id="cb59-8"><a href="#cb59-8"></a>dttm.ceil(<span class="st">'1min'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a><span class="co"># Rounding dates to nearest time unit</span></span>
+<span id="cb62-2"><a href="#cb62-2"></a>dttm.<span class="bu">round</span>(<span class="st">'1min'</span>)</span>
+<span id="cb62-3"><a href="#cb62-3"></a></span>
+<span id="cb62-4"><a href="#cb62-4"></a><span class="co"># Flooring dates to nearest time unit</span></span>
+<span id="cb62-5"><a href="#cb62-5"></a>dttm.floor(<span class="st">'1min'</span>)</span>
+<span id="cb62-6"><a href="#cb62-6"></a></span>
+<span id="cb62-7"><a href="#cb62-7"></a><span class="co"># Ceiling dates to nearest time unit</span></span>
+<span id="cb62-8"><a href="#cb62-8"></a>dttm.ceil(<span class="st">'1min'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>DatetimeIndex(['2018-10-26 12:00:00+00:00', '2018-10-26 13:00:00+00:00'], dtype='datetime64[ns, UTC]', freq=None)</code></pre>
 </div>
 </div>
 <p><strong>Arithmetic</strong></p>
-<div class="cell" data-execution_count="42">
+<div class="cell" data-execution_count="45">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># Create two datetimes</span></span>
-<span id="cb61-2"><a href="#cb61-2"></a>now <span class="op">=</span> dt.datetime.now()</span>
-<span id="cb61-3"><a href="#cb61-3"></a>then <span class="op">=</span> pd.Timestamp(<span class="st">'2021-09-15 10:03:30'</span>)</span>
-<span id="cb61-4"><a href="#cb61-4"></a></span>
-<span id="cb61-5"><a href="#cb61-5"></a><span class="co"># Get time elapsed as timedelta object</span></span>
-<span id="cb61-6"><a href="#cb61-6"></a>now <span class="op">-</span> then</span>
-<span id="cb61-7"><a href="#cb61-7"></a></span>
-<span id="cb61-8"><a href="#cb61-8"></a><span class="co"># Get time elapsed in seconds </span></span>
-<span id="cb61-9"><a href="#cb61-9"></a>(now <span class="op">-</span> then).total_seconds()</span>
-<span id="cb61-10"><a href="#cb61-10"></a></span>
-<span id="cb61-11"><a href="#cb61-11"></a><span class="co"># Adding a day to a datetime</span></span>
-<span id="cb61-12"><a href="#cb61-12"></a>dt.datetime(<span class="dv">2022</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">11</span>,<span class="dv">13</span>,<span class="dv">50</span>) <span class="op">+</span> dt.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a><span class="co"># Create two datetimes</span></span>
+<span id="cb64-2"><a href="#cb64-2"></a>now <span class="op">=</span> dt.datetime.now()</span>
+<span id="cb64-3"><a href="#cb64-3"></a>then <span class="op">=</span> pd.Timestamp(<span class="st">'2021-09-15 10:03:30'</span>)</span>
+<span id="cb64-4"><a href="#cb64-4"></a></span>
+<span id="cb64-5"><a href="#cb64-5"></a><span class="co"># Get time elapsed as timedelta object</span></span>
+<span id="cb64-6"><a href="#cb64-6"></a>now <span class="op">-</span> then</span>
+<span id="cb64-7"><a href="#cb64-7"></a></span>
+<span id="cb64-8"><a href="#cb64-8"></a><span class="co"># Get time elapsed in seconds </span></span>
+<span id="cb64-9"><a href="#cb64-9"></a>(now <span class="op">-</span> then).total_seconds()</span>
+<span id="cb64-10"><a href="#cb64-10"></a></span>
+<span id="cb64-11"><a href="#cb64-11"></a><span class="co"># Adding a day to a datetime</span></span>
+<span id="cb64-12"><a href="#cb64-12"></a>dt.datetime(<span class="dv">2022</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">11</span>,<span class="dv">13</span>,<span class="dv">50</span>) <span class="op">+</span> dt.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>datetime.datetime(2022, 8, 6, 11, 13, 50)</code></pre>
 </div>
 </div>
 <p><strong>Time Intervals</strong></p>
-<div class="cell" data-execution_count="43">
+<div class="cell" data-execution_count="46">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a><span class="co"># Create interval datetimes</span></span>
-<span id="cb63-2"><a href="#cb63-2"></a>start_1 <span class="op">=</span> pd.Timestamp(<span class="st">'2021-10-21 03:02:10'</span>)</span>
-<span id="cb63-3"><a href="#cb63-3"></a>finish_1 <span class="op">=</span> pd.Timestamp(<span class="st">'2022-09-15 10:03:30'</span>)</span>
-<span id="cb63-4"><a href="#cb63-4"></a>start_2 <span class="op">=</span> pd.Timestamp(<span class="st">'2022-08-21 03:02:10'</span>)</span>
-<span id="cb63-5"><a href="#cb63-5"></a>finish_2 <span class="op">=</span> pd.Timestamp(<span class="st">'2022-12-15 10:03:30'</span>)</span>
-<span id="cb63-6"><a href="#cb63-6"></a></span>
-<span id="cb63-7"><a href="#cb63-7"></a><span class="co"># Specify the interval between two datetimes</span></span>
-<span id="cb63-8"><a href="#cb63-8"></a>pd.Interval(start_1, finish_1, closed<span class="op">=</span><span class="st">'right'</span>)</span>
-<span id="cb63-9"><a href="#cb63-9"></a></span>
-<span id="cb63-10"><a href="#cb63-10"></a><span class="co"># Get the length of an interval</span></span>
-<span id="cb63-11"><a href="#cb63-11"></a>pd.Interval(start_1, finish_1, closed<span class="op">=</span><span class="st">'right'</span>).length</span>
-<span id="cb63-12"><a href="#cb63-12"></a></span>
-<span id="cb63-13"><a href="#cb63-13"></a><span class="co"># Determine if two intervals are intersecting</span></span>
-<span id="cb63-14"><a href="#cb63-14"></a>pd.Interval(start_1, finish_1, closed<span class="op">=</span><span class="st">'right'</span>).overlaps(pd.Interval(start_2, finish_2, closed<span class="op">=</span><span class="st">'right'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a><span class="co"># Create interval datetimes</span></span>
+<span id="cb66-2"><a href="#cb66-2"></a>start_1 <span class="op">=</span> pd.Timestamp(<span class="st">'2021-10-21 03:02:10'</span>)</span>
+<span id="cb66-3"><a href="#cb66-3"></a>finish_1 <span class="op">=</span> pd.Timestamp(<span class="st">'2022-09-15 10:03:30'</span>)</span>
+<span id="cb66-4"><a href="#cb66-4"></a>start_2 <span class="op">=</span> pd.Timestamp(<span class="st">'2022-08-21 03:02:10'</span>)</span>
+<span id="cb66-5"><a href="#cb66-5"></a>finish_2 <span class="op">=</span> pd.Timestamp(<span class="st">'2022-12-15 10:03:30'</span>)</span>
+<span id="cb66-6"><a href="#cb66-6"></a></span>
+<span id="cb66-7"><a href="#cb66-7"></a><span class="co"># Specify the interval between two datetimes</span></span>
+<span id="cb66-8"><a href="#cb66-8"></a>pd.Interval(start_1, finish_1, closed<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb66-9"><a href="#cb66-9"></a></span>
+<span id="cb66-10"><a href="#cb66-10"></a><span class="co"># Get the length of an interval</span></span>
+<span id="cb66-11"><a href="#cb66-11"></a>pd.Interval(start_1, finish_1, closed<span class="op">=</span><span class="st">'right'</span>).length</span>
+<span id="cb66-12"><a href="#cb66-12"></a></span>
+<span id="cb66-13"><a href="#cb66-13"></a><span class="co"># Determine if two intervals are intersecting</span></span>
+<span id="cb66-14"><a href="#cb66-14"></a>pd.Interval(start_1, finish_1, closed<span class="op">=</span><span class="st">'right'</span>).overlaps(pd.Interval(start_2, finish_2, closed<span class="op">=</span><span class="st">'right'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p><strong>Time Deltas</strong></p>
-<div class="cell" data-execution_count="44">
+<div class="cell" data-execution_count="47">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># Define a timedelta in days</span></span>
-<span id="cb65-2"><a href="#cb65-2"></a>pd.Timedelta(<span class="dv">7</span>, <span class="st">"d"</span>)</span>
-<span id="cb65-3"><a href="#cb65-3"></a></span>
-<span id="cb65-4"><a href="#cb65-4"></a><span class="co"># Convert timedelta to seconds</span></span>
-<span id="cb65-5"><a href="#cb65-5"></a>pd.Timedelta(<span class="dv">7</span>, <span class="st">"d"</span>).total_seconds()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># Define a timedelta in days</span></span>
+<span id="cb68-2"><a href="#cb68-2"></a>pd.Timedelta(<span class="dv">7</span>, <span class="st">"d"</span>)</span>
+<span id="cb68-3"><a href="#cb68-3"></a></span>
+<span id="cb68-4"><a href="#cb68-4"></a><span class="co"># Convert timedelta to seconds</span></span>
+<span id="cb68-5"><a href="#cb68-5"></a>pd.Timedelta(<span class="dv">7</span>, <span class="st">"d"</span>).total_seconds()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>604800.0</code></pre>
@@ -1648,78 +1744,78 @@ dtype: datetime64[ns]</code></pre>
 </div>
 <div id="tabset-5-6">
 <p><strong>Merge</strong>*</p>
-<div class="cell" data-execution_count="45">
+<div class="cell" data-execution_count="48">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a>df1 <span class="op">=</span> pd.DataFrame({<span class="st">'employee'</span>: [<span class="st">'Bob'</span>, <span class="st">'Jake'</span>, <span class="st">'Lisa'</span>, <span class="st">'Sue'</span>],</span>
-<span id="cb67-2"><a href="#cb67-2"></a>                    <span class="st">'group'</span>: [<span class="st">'Accounting'</span>, <span class="st">'Engineering'</span>, <span class="st">'Engineering'</span>, <span class="st">'HR'</span>]})</span>
-<span id="cb67-3"><a href="#cb67-3"></a>df2 <span class="op">=</span> pd.DataFrame({<span class="st">'employee'</span>: [<span class="st">'Lisa'</span>, <span class="st">'Bob'</span>, <span class="st">'Jake'</span>, <span class="st">'Sue'</span>],</span>
-<span id="cb67-4"><a href="#cb67-4"></a>                    <span class="st">'hire_date'</span>: [<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>, <span class="dv">2014</span>]})</span>
-<span id="cb67-5"><a href="#cb67-5"></a></span>
-<span id="cb67-6"><a href="#cb67-6"></a>df3 <span class="op">=</span> pd.merge(df1, df2)</span>
-<span id="cb67-7"><a href="#cb67-7"></a>df3</span>
-<span id="cb67-8"><a href="#cb67-8"></a></span>
-<span id="cb67-9"><a href="#cb67-9"></a></span>
-<span id="cb67-10"><a href="#cb67-10"></a>df4 <span class="op">=</span> pd.DataFrame({<span class="st">'group'</span>: [<span class="st">'Accounting'</span>, <span class="st">'Engineering'</span>, <span class="st">'HR'</span>],</span>
-<span id="cb67-11"><a href="#cb67-11"></a>                    <span class="st">'supervisor'</span>: [<span class="st">'Carly'</span>, <span class="st">'Guido'</span>, <span class="st">'Steve'</span>]})</span>
-<span id="cb67-12"><a href="#cb67-12"></a>                    </span>
-<span id="cb67-13"><a href="#cb67-13"></a>pd.merge(df3, df4)</span>
-<span id="cb67-14"><a href="#cb67-14"></a></span>
-<span id="cb67-15"><a href="#cb67-15"></a><span class="co">#Many-to-many joins</span></span>
-<span id="cb67-16"><a href="#cb67-16"></a></span>
-<span id="cb67-17"><a href="#cb67-17"></a>df5 <span class="op">=</span> pd.DataFrame({<span class="st">'group'</span>: [<span class="st">'Accounting'</span>, <span class="st">'Accounting'</span>,</span>
-<span id="cb67-18"><a href="#cb67-18"></a>                              <span class="st">'Engineering'</span>, <span class="st">'Engineering'</span>, <span class="st">'HR'</span>, <span class="st">'HR'</span>],</span>
-<span id="cb67-19"><a href="#cb67-19"></a>                    <span class="st">'skills'</span>: [<span class="st">'math'</span>, <span class="st">'spreadsheets'</span>, <span class="st">'coding'</span>, <span class="st">'linux'</span>,</span>
-<span id="cb67-20"><a href="#cb67-20"></a>                               <span class="st">'spreadsheets'</span>, <span class="st">'organization'</span>]})</span>
-<span id="cb67-21"><a href="#cb67-21"></a>                               </span>
-<span id="cb67-22"><a href="#cb67-22"></a>pd.merge(df1, df5)</span>
-<span id="cb67-23"><a href="#cb67-23"></a></span>
-<span id="cb67-24"><a href="#cb67-24"></a></span>
-<span id="cb67-25"><a href="#cb67-25"></a>df3 <span class="op">=</span> pd.DataFrame({<span class="st">'name'</span>: [<span class="st">'Bob'</span>, <span class="st">'Jake'</span>, <span class="st">'Lisa'</span>, <span class="st">'Sue'</span>],</span>
-<span id="cb67-26"><a href="#cb67-26"></a>                    <span class="st">'salary'</span>: [<span class="dv">70000</span>, <span class="dv">80000</span>, <span class="dv">120000</span>, <span class="dv">90000</span>]})</span>
-<span id="cb67-27"><a href="#cb67-27"></a>                    </span>
-<span id="cb67-28"><a href="#cb67-28"></a>pd.merge(df1, df3, left_on<span class="op">=</span><span class="st">"employee"</span>, right_on<span class="op">=</span><span class="st">"name"</span>)</span>
-<span id="cb67-29"><a href="#cb67-29"></a></span>
-<span id="cb67-30"><a href="#cb67-30"></a><span class="co">#Drop redundant column</span></span>
-<span id="cb67-31"><a href="#cb67-31"></a>pd.merge(df1, df3, left_on<span class="op">=</span><span class="st">"employee"</span>, right_on<span class="op">=</span><span class="st">"name"</span>).drop(<span class="st">'name'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>df1 <span class="op">=</span> pd.DataFrame({<span class="st">'employee'</span>: [<span class="st">'Bob'</span>, <span class="st">'Jake'</span>, <span class="st">'Lisa'</span>, <span class="st">'Sue'</span>],</span>
+<span id="cb70-2"><a href="#cb70-2"></a>                    <span class="st">'group'</span>: [<span class="st">'Accounting'</span>, <span class="st">'Engineering'</span>, <span class="st">'Engineering'</span>, <span class="st">'HR'</span>]})</span>
+<span id="cb70-3"><a href="#cb70-3"></a>df2 <span class="op">=</span> pd.DataFrame({<span class="st">'employee'</span>: [<span class="st">'Lisa'</span>, <span class="st">'Bob'</span>, <span class="st">'Jake'</span>, <span class="st">'Sue'</span>],</span>
+<span id="cb70-4"><a href="#cb70-4"></a>                    <span class="st">'hire_date'</span>: [<span class="dv">2004</span>, <span class="dv">2008</span>, <span class="dv">2012</span>, <span class="dv">2014</span>]})</span>
+<span id="cb70-5"><a href="#cb70-5"></a></span>
+<span id="cb70-6"><a href="#cb70-6"></a>df3 <span class="op">=</span> pd.merge(df1, df2)</span>
+<span id="cb70-7"><a href="#cb70-7"></a>df3</span>
+<span id="cb70-8"><a href="#cb70-8"></a></span>
+<span id="cb70-9"><a href="#cb70-9"></a></span>
+<span id="cb70-10"><a href="#cb70-10"></a>df4 <span class="op">=</span> pd.DataFrame({<span class="st">'group'</span>: [<span class="st">'Accounting'</span>, <span class="st">'Engineering'</span>, <span class="st">'HR'</span>],</span>
+<span id="cb70-11"><a href="#cb70-11"></a>                    <span class="st">'supervisor'</span>: [<span class="st">'Carly'</span>, <span class="st">'Guido'</span>, <span class="st">'Steve'</span>]})</span>
+<span id="cb70-12"><a href="#cb70-12"></a>                    </span>
+<span id="cb70-13"><a href="#cb70-13"></a>pd.merge(df3, df4)</span>
+<span id="cb70-14"><a href="#cb70-14"></a></span>
+<span id="cb70-15"><a href="#cb70-15"></a><span class="co">#Many-to-many joins</span></span>
+<span id="cb70-16"><a href="#cb70-16"></a></span>
+<span id="cb70-17"><a href="#cb70-17"></a>df5 <span class="op">=</span> pd.DataFrame({<span class="st">'group'</span>: [<span class="st">'Accounting'</span>, <span class="st">'Accounting'</span>,</span>
+<span id="cb70-18"><a href="#cb70-18"></a>                              <span class="st">'Engineering'</span>, <span class="st">'Engineering'</span>, <span class="st">'HR'</span>, <span class="st">'HR'</span>],</span>
+<span id="cb70-19"><a href="#cb70-19"></a>                    <span class="st">'skills'</span>: [<span class="st">'math'</span>, <span class="st">'spreadsheets'</span>, <span class="st">'coding'</span>, <span class="st">'linux'</span>,</span>
+<span id="cb70-20"><a href="#cb70-20"></a>                               <span class="st">'spreadsheets'</span>, <span class="st">'organization'</span>]})</span>
+<span id="cb70-21"><a href="#cb70-21"></a>                               </span>
+<span id="cb70-22"><a href="#cb70-22"></a>pd.merge(df1, df5)</span>
+<span id="cb70-23"><a href="#cb70-23"></a></span>
+<span id="cb70-24"><a href="#cb70-24"></a></span>
+<span id="cb70-25"><a href="#cb70-25"></a>df3 <span class="op">=</span> pd.DataFrame({<span class="st">'name'</span>: [<span class="st">'Bob'</span>, <span class="st">'Jake'</span>, <span class="st">'Lisa'</span>, <span class="st">'Sue'</span>],</span>
+<span id="cb70-26"><a href="#cb70-26"></a>                    <span class="st">'salary'</span>: [<span class="dv">70000</span>, <span class="dv">80000</span>, <span class="dv">120000</span>, <span class="dv">90000</span>]})</span>
+<span id="cb70-27"><a href="#cb70-27"></a>                    </span>
+<span id="cb70-28"><a href="#cb70-28"></a>pd.merge(df1, df3, left_on<span class="op">=</span><span class="st">"employee"</span>, right_on<span class="op">=</span><span class="st">"name"</span>)</span>
+<span id="cb70-29"><a href="#cb70-29"></a></span>
+<span id="cb70-30"><a href="#cb70-30"></a><span class="co">#Drop redundant column</span></span>
+<span id="cb70-31"><a href="#cb70-31"></a>pd.merge(df1, df3, left_on<span class="op">=</span><span class="st">"employee"</span>, right_on<span class="op">=</span><span class="st">"name"</span>).drop(<span class="st">'name'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Join</strong></p>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="49">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a>df1a <span class="op">=</span> df1.set_index(<span class="st">'employee'</span>)</span>
-<span id="cb68-2"><a href="#cb68-2"></a>df2a <span class="op">=</span> df2.set_index(<span class="st">'employee'</span>)</span>
-<span id="cb68-3"><a href="#cb68-3"></a></span>
-<span id="cb68-4"><a href="#cb68-4"></a>pd.merge(df1a, df2a, left_index<span class="op">=</span><span class="va">True</span>, right_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb68-5"><a href="#cb68-5"></a></span>
-<span id="cb68-6"><a href="#cb68-6"></a></span>
-<span id="cb68-7"><a href="#cb68-7"></a><span class="co">#For convenience, DataFrames implement the join() method, which performs a merge that defaults to joining on indices:</span></span>
-<span id="cb68-8"><a href="#cb68-8"></a></span>
-<span id="cb68-9"><a href="#cb68-9"></a>df1a.join(df2a)</span>
-<span id="cb68-10"><a href="#cb68-10"></a></span>
-<span id="cb68-11"><a href="#cb68-11"></a></span>
-<span id="cb68-12"><a href="#cb68-12"></a></span>
-<span id="cb68-13"><a href="#cb68-13"></a>df6 <span class="op">=</span> pd.DataFrame({<span class="st">'name'</span>: [<span class="st">'Peter'</span>, <span class="st">'Paul'</span>, <span class="st">'Mary'</span>],</span>
-<span id="cb68-14"><a href="#cb68-14"></a>                    <span class="st">'food'</span>: [<span class="st">'fish'</span>, <span class="st">'beans'</span>, <span class="st">'bread'</span>]},</span>
-<span id="cb68-15"><a href="#cb68-15"></a>                   columns<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'food'</span>])</span>
-<span id="cb68-16"><a href="#cb68-16"></a>df7 <span class="op">=</span> pd.DataFrame({<span class="st">'name'</span>: [<span class="st">'Mary'</span>, <span class="st">'Joseph'</span>],</span>
-<span id="cb68-17"><a href="#cb68-17"></a>                    <span class="st">'drink'</span>: [<span class="st">'wine'</span>, <span class="st">'beer'</span>]},</span>
-<span id="cb68-18"><a href="#cb68-18"></a>                   columns<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'drink'</span>])</span>
-<span id="cb68-19"><a href="#cb68-19"></a>                   </span>
-<span id="cb68-20"><a href="#cb68-20"></a>                   </span>
-<span id="cb68-21"><a href="#cb68-21"></a>pd.merge(df6, df7)</span>
-<span id="cb68-22"><a href="#cb68-22"></a></span>
-<span id="cb68-23"><a href="#cb68-23"></a><span class="co">#Inner Join</span></span>
-<span id="cb68-24"><a href="#cb68-24"></a></span>
-<span id="cb68-25"><a href="#cb68-25"></a>pd.merge(df6, df7, how<span class="op">=</span><span class="st">'inner'</span>)</span>
-<span id="cb68-26"><a href="#cb68-26"></a></span>
-<span id="cb68-27"><a href="#cb68-27"></a><span class="co">#Other options for the how keyword are 'outer', 'left', and 'right'. An outer join returns a join over the union of the input columns, and fills in all missing values with NAs</span></span>
-<span id="cb68-28"><a href="#cb68-28"></a></span>
-<span id="cb68-29"><a href="#cb68-29"></a>pd.merge(df6, df7, how<span class="op">=</span><span class="st">'outer'</span>)</span>
-<span id="cb68-30"><a href="#cb68-30"></a></span>
-<span id="cb68-31"><a href="#cb68-31"></a></span>
-<span id="cb68-32"><a href="#cb68-32"></a>pd.merge(df6, df7, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a>df1a <span class="op">=</span> df1.set_index(<span class="st">'employee'</span>)</span>
+<span id="cb71-2"><a href="#cb71-2"></a>df2a <span class="op">=</span> df2.set_index(<span class="st">'employee'</span>)</span>
+<span id="cb71-3"><a href="#cb71-3"></a></span>
+<span id="cb71-4"><a href="#cb71-4"></a>pd.merge(df1a, df2a, left_index<span class="op">=</span><span class="va">True</span>, right_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb71-5"><a href="#cb71-5"></a></span>
+<span id="cb71-6"><a href="#cb71-6"></a></span>
+<span id="cb71-7"><a href="#cb71-7"></a><span class="co">#For convenience, DataFrames implement the join() method, which performs a merge that defaults to joining on indices:</span></span>
+<span id="cb71-8"><a href="#cb71-8"></a></span>
+<span id="cb71-9"><a href="#cb71-9"></a>df1a.join(df2a)</span>
+<span id="cb71-10"><a href="#cb71-10"></a></span>
+<span id="cb71-11"><a href="#cb71-11"></a></span>
+<span id="cb71-12"><a href="#cb71-12"></a></span>
+<span id="cb71-13"><a href="#cb71-13"></a>df6 <span class="op">=</span> pd.DataFrame({<span class="st">'name'</span>: [<span class="st">'Peter'</span>, <span class="st">'Paul'</span>, <span class="st">'Mary'</span>],</span>
+<span id="cb71-14"><a href="#cb71-14"></a>                    <span class="st">'food'</span>: [<span class="st">'fish'</span>, <span class="st">'beans'</span>, <span class="st">'bread'</span>]},</span>
+<span id="cb71-15"><a href="#cb71-15"></a>                   columns<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'food'</span>])</span>
+<span id="cb71-16"><a href="#cb71-16"></a>df7 <span class="op">=</span> pd.DataFrame({<span class="st">'name'</span>: [<span class="st">'Mary'</span>, <span class="st">'Joseph'</span>],</span>
+<span id="cb71-17"><a href="#cb71-17"></a>                    <span class="st">'drink'</span>: [<span class="st">'wine'</span>, <span class="st">'beer'</span>]},</span>
+<span id="cb71-18"><a href="#cb71-18"></a>                   columns<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'drink'</span>])</span>
+<span id="cb71-19"><a href="#cb71-19"></a>                   </span>
+<span id="cb71-20"><a href="#cb71-20"></a>                   </span>
+<span id="cb71-21"><a href="#cb71-21"></a>pd.merge(df6, df7)</span>
+<span id="cb71-22"><a href="#cb71-22"></a></span>
+<span id="cb71-23"><a href="#cb71-23"></a><span class="co">#Inner Join</span></span>
+<span id="cb71-24"><a href="#cb71-24"></a></span>
+<span id="cb71-25"><a href="#cb71-25"></a>pd.merge(df6, df7, how<span class="op">=</span><span class="st">'inner'</span>)</span>
+<span id="cb71-26"><a href="#cb71-26"></a></span>
+<span id="cb71-27"><a href="#cb71-27"></a><span class="co">#Other options for the how keyword are 'outer', 'left', and 'right'. An outer join returns a join over the union of the input columns, and fills in all missing values with NAs</span></span>
+<span id="cb71-28"><a href="#cb71-28"></a></span>
+<span id="cb71-29"><a href="#cb71-29"></a>pd.merge(df6, df7, how<span class="op">=</span><span class="st">'outer'</span>)</span>
+<span id="cb71-30"><a href="#cb71-30"></a></span>
+<span id="cb71-31"><a href="#cb71-31"></a></span>
+<span id="cb71-32"><a href="#cb71-32"></a>pd.merge(df6, df7, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1736,6 +1832,93 @@ dtype: datetime64[ns]</code></pre>
 <ol type="1">
 <li>Top 3 states</li>
 </ol>
+</div>
+<div id="tabset-5-8">
+<p><strong>Collapsing data into categories</strong> Map categories to fewer ones: reducing categories in categorical column.</p>
+<div class="cell" data-execution_count="50">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1"></a><span class="co"># Create mapping dictionary and replace</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a>mapping <span class="op">=</span> {<span class="st">'Microsoft'</span>:<span class="st">'ComputerOS'</span>, <span class="st">'MacOS'</span>:<span class="st">'ComputerOS'</span>, <span class="st">'Linux'</span>:<span class="st">'ComputerOS'</span>,</span>
+<span id="cb72-3"><a href="#cb72-3"></a><span class="st">'IOS'</span>:<span class="st">'MobileOS'</span>, <span class="st">'Android'</span>:<span class="st">'MobileOS'</span>}</span>
+<span id="cb72-4"><a href="#cb72-4"></a>devices[<span class="st">'operating_system'</span>] <span class="op">=</span> devices[<span class="st">'operating_system'</span>].replace(mapping)</span>
+<span id="cb72-5"><a href="#cb72-5"></a>devices[<span class="st">'operating_system'</span>].unique()</span>
+<span id="cb72-6"><a href="#cb72-6"></a></span>
+<span id="cb72-7"><a href="#cb72-7"></a></span>
+<span id="cb72-8"><a href="#cb72-8"></a><span class="co"># Replace "+" with "00"</span></span>
+<span id="cb72-9"><a href="#cb72-9"></a>phones[<span class="st">"Phone number"</span>] <span class="op">=</span> phones[<span class="st">"Phone number"</span>].<span class="bu">str</span>.replace(<span class="st">"+"</span>, <span class="st">"00"</span>)</span>
+<span id="cb72-10"><a href="#cb72-10"></a>phones</span>
+<span id="cb72-11"><a href="#cb72-11"></a></span>
+<span id="cb72-12"><a href="#cb72-12"></a><span class="co"># Replace "-" with nothing</span></span>
+<span id="cb72-13"><a href="#cb72-13"></a>phones[<span class="st">"Phone number"</span>] <span class="op">=</span> phones[<span class="st">"Phone number"</span>].<span class="bu">str</span>.replace(<span class="st">"-"</span>, <span class="st">""</span>)</span>
+<span id="cb72-14"><a href="#cb72-14"></a>phones</span>
+<span id="cb72-15"><a href="#cb72-15"></a></span>
+<span id="cb72-16"><a href="#cb72-16"></a></span>
+<span id="cb72-17"><a href="#cb72-17"></a><span class="co"># Replace phone numbers with lower than 10 digits to NaN</span></span>
+<span id="cb72-18"><a href="#cb72-18"></a>digits <span class="op">=</span> phones[<span class="st">'Phone number'</span>].<span class="bu">str</span>.<span class="bu">len</span>()</span>
+<span id="cb72-19"><a href="#cb72-19"></a>phones.loc[digits <span class="op">&lt;</span> <span class="dv">10</span>, <span class="st">"Phone number"</span>] <span class="op">=</span> np.nan</span>
+<span id="cb72-20"><a href="#cb72-20"></a>phones</span>
+<span id="cb72-21"><a href="#cb72-21"></a></span>
+<span id="cb72-22"><a href="#cb72-22"></a></span>
+<span id="cb72-23"><a href="#cb72-23"></a><span class="co"># Replace letters with nothing</span></span>
+<span id="cb72-24"><a href="#cb72-24"></a>phones[<span class="st">'Phone number'</span>] <span class="op">=</span> phones[<span class="st">'Phone number'</span>].<span class="bu">str</span>.replace(<span class="vs">r'\D+'</span>, <span class="st">''</span>)</span>
+<span id="cb72-25"><a href="#cb72-25"></a>phones.head()</span>
+<span id="cb72-26"><a href="#cb72-26"></a></span>
+<span id="cb72-27"><a href="#cb72-27"></a></span>
+<span id="cb72-28"><a href="#cb72-28"></a><span class="co"># Treating date data</span></span>
+<span id="cb72-29"><a href="#cb72-29"></a>birthdays[<span class="st">'Birthday'</span>] <span class="op">=</span> birthdays[<span class="st">'Birthday'</span>].dt.strftime(<span class="st">"</span><span class="sc">%d</span><span class="st">-%m-%Y"</span>)</span>
+<span id="cb72-30"><a href="#cb72-30"></a>birthdays.head()</span>
+<span id="cb72-31"><a href="#cb72-31"></a></span>
+<span id="cb72-32"><a href="#cb72-32"></a></span>
+<span id="cb72-33"><a href="#cb72-33"></a>sum_classes <span class="op">=</span> flights[[<span class="st">'economy_class'</span>, <span class="st">'business_class'</span>, <span class="st">'first_class'</span>]].<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb72-34"><a href="#cb72-34"></a>passenger_equ <span class="op">=</span> sum_classes <span class="op">==</span> flights[<span class="st">'total_passengers'</span>]</span>
+<span id="cb72-35"><a href="#cb72-35"></a><span class="co"># Find and filter out rows with inconsistent passengers</span></span>
+<span id="cb72-36"><a href="#cb72-36"></a>inconsistent_pass <span class="op">=</span> flights[<span class="op">~</span>passenger_equ]</span>
+<span id="cb72-37"><a href="#cb72-37"></a>consistent_pass <span class="op">=</span> flights[passenger_equ]</span>
+<span id="cb72-38"><a href="#cb72-38"></a></span>
+<span id="cb72-39"><a href="#cb72-39"></a></span>
+<span id="cb72-40"><a href="#cb72-40"></a><span class="co"># Drop missing values</span></span>
+<span id="cb72-41"><a href="#cb72-41"></a>airquality_dropped <span class="op">=</span> airquality.dropna(subset <span class="op">=</span> [<span class="st">'CO2'</span>])</span>
+<span id="cb72-42"><a href="#cb72-42"></a>airquality_dropped.head()</span>
+<span id="cb72-43"><a href="#cb72-43"></a></span>
+<span id="cb72-44"><a href="#cb72-44"></a><span class="co">#Replacing with statistical measures</span></span>
+<span id="cb72-45"><a href="#cb72-45"></a>co2_mean <span class="op">=</span> airquality[<span class="st">'CO2'</span>].mean()</span>
+<span id="cb72-46"><a href="#cb72-46"></a>airquality_imputed <span class="op">=</span> airquality.fillna({<span class="st">'CO2'</span>: co2_mean})</span>
+<span id="cb72-47"><a href="#cb72-47"></a>airquality_imputed.head()</span>
+<span id="cb72-48"><a href="#cb72-48"></a></span>
+<span id="cb72-49"><a href="#cb72-49"></a></span>
+<span id="cb72-50"><a href="#cb72-50"></a><span class="co"># Multiple grouped summaries</span></span>
+<span id="cb72-51"><a href="#cb72-51"></a>dogs.groupby(<span class="st">"color"</span>)[<span class="st">"weight_kg"</span>].agg([<span class="bu">min</span>, <span class="bu">max</span>, <span class="bu">sum</span>])</span>
+<span id="cb72-52"><a href="#cb72-52"></a></span>
+<span id="cb72-53"><a href="#cb72-53"></a><span class="co"># Grouping by multiple variables</span></span>
+<span id="cb72-54"><a href="#cb72-54"></a>dogs.groupby([<span class="st">"color"</span>, <span class="st">"breed"</span>])[<span class="st">"weight_kg"</span>].mean()</span>
+<span id="cb72-55"><a href="#cb72-55"></a></span>
+<span id="cb72-56"><a href="#cb72-56"></a>dogs.groupby([<span class="st">"color"</span>, <span class="st">"breed"</span>])[[<span class="st">"weight_kg"</span>, <span class="st">"height_cm"</span>]].mean()</span>
+<span id="cb72-57"><a href="#cb72-57"></a></span>
+<span id="cb72-58"><a href="#cb72-58"></a></span>
+<span id="cb72-59"><a href="#cb72-59"></a></span>
+<span id="cb72-60"><a href="#cb72-60"></a><span class="co"># Group by to pivot table</span></span>
+<span id="cb72-61"><a href="#cb72-61"></a>dogs.pivot_table(values<span class="op">=</span><span class="st">"weight_kg"</span>, index<span class="op">=</span><span class="st">"color"</span>)</span>
+<span id="cb72-62"><a href="#cb72-62"></a></span>
+<span id="cb72-63"><a href="#cb72-63"></a></span>
+<span id="cb72-64"><a href="#cb72-64"></a><span class="co"># Different statistics</span></span>
+<span id="cb72-65"><a href="#cb72-65"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb72-66"><a href="#cb72-66"></a>dogs.pivot_table(values<span class="op">=</span><span class="st">"weight_kg"</span>, index<span class="op">=</span><span class="st">"color"</span>, aggfunc<span class="op">=</span>np.median)</span>
+<span id="cb72-67"><a href="#cb72-67"></a></span>
+<span id="cb72-68"><a href="#cb72-68"></a><span class="co"># Multiple statistics</span></span>
+<span id="cb72-69"><a href="#cb72-69"></a>dogs.pivot_table(values<span class="op">=</span><span class="st">"weight_kg"</span>, index<span class="op">=</span><span class="st">"color"</span>, aggfunc<span class="op">=</span>[np.mean, np.median])</span>
+<span id="cb72-70"><a href="#cb72-70"></a></span>
+<span id="cb72-71"><a href="#cb72-71"></a>dogs.pivot_table(values<span class="op">=</span><span class="st">"weight_kg"</span>, index<span class="op">=</span><span class="st">"color"</span>, columns<span class="op">=</span><span class="st">"breed"</span>)</span>
+<span id="cb72-72"><a href="#cb72-72"></a></span>
+<span id="cb72-73"><a href="#cb72-73"></a><span class="co"># Filling missing values in pivot tables</span></span>
+<span id="cb72-74"><a href="#cb72-74"></a>dogs.pivot_table(values<span class="op">=</span><span class="st">"weight_kg"</span>, index<span class="op">=</span><span class="st">"color"</span>, columns<span class="op">=</span><span class="st">"breed"</span>, </span>
+<span id="cb72-75"><a href="#cb72-75"></a>fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb72-76"><a href="#cb72-76"></a></span>
+<span id="cb72-77"><a href="#cb72-77"></a><span class="co"># Summing with pivot tables</span></span>
+<span id="cb72-78"><a href="#cb72-78"></a>dogs.pivot_table(values<span class="op">=</span><span class="st">"weight_kg"</span>, index<span class="op">=</span><span class="st">"color"</span>, columns<span class="op">=</span><span class="st">"breed"</span>,</span>
+<span id="cb72-79"><a href="#cb72-79"></a>fill_value<span class="op">=</span><span class="dv">0</span>, margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </div>
 </div>
 </div>
@@ -1781,176 +1964,176 @@ dtype: datetime64[ns]</code></pre>
 <li>Very customizable in general</li>
 </ul>
 <p>Matplotlib allows you to create reproducible figures programmatically. Let’s learn how to use it! Before continuing this lecture, I encourage you just to explore the official Matplotlib web page: <a href="http://matplotlib.org/">http://matplotlib.org/</a></p>
-<div class="cell" data-execution_count="47">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell" data-execution_count="48">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb70-2"><a href="#cb70-2"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
-<span id="cb70-3"><a href="#cb70-3"></a>y <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Since we are using ipython notebook we need to run <code>%matplotlib inline</code> before running the plot</p>
-<div class="cell" data-execution_count="49">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a>plt.plot(x, y, <span class="st">'r'</span>) <span class="co"># 'r' is the color red</span></span>
-<span id="cb71-2"><a href="#cb71-2"></a>plt.xlabel(<span class="st">'X Axis Title Here'</span>)</span>
-<span id="cb71-3"><a href="#cb71-3"></a>plt.ylabel(<span class="st">'Y Axis Title Here'</span>)</span>
-<span id="cb71-4"><a href="#cb71-4"></a>plt.title(<span class="st">'String Title Here'</span>)</span>
-<span id="cb71-5"><a href="#cb71-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-50-output-1.png" width="808" height="449"></p>
-</div>
-</div>
-<p><strong>Bar charts</strong></p>
-<div class="cell" data-execution_count="50">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1"></a>x <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>]</span>
-<span id="cb72-2"><a href="#cb72-2"></a>y <span class="op">=</span> [<span class="dv">13</span>, <span class="dv">45</span>, <span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">96</span>, <span class="dv">76</span>]</span>
-<span id="cb72-3"><a href="#cb72-3"></a>plt.title(<span class="st">'Bar Graph'</span>)</span>
-<span id="cb72-4"><a href="#cb72-4"></a>plt.bar(x, y, color<span class="op">=</span><span class="st">'dodgerblue'</span>, width<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb72-5"><a href="#cb72-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-51-output-1.png" width="798" height="431"></p>
-</div>
-</div>
-<p><strong>Pie charts</strong></p>
 <div class="cell" data-execution_count="51">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a>x <span class="op">=</span> [<span class="dv">35</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">30</span>]</span>
-<span id="cb73-2"><a href="#cb73-2"></a>y <span class="op">=</span> [<span class="st">'Apple'</span>, <span class="st">'Bananna'</span>, <span class="st">'Grapes'</span>, <span class="st">'Orange'</span>, <span class="st">'PineApple'</span>, <span class="st">'Dragon Fruit'</span>]</span>
-<span id="cb73-3"><a href="#cb73-3"></a>plt.title(<span class="st">'Pie Chart'</span>)</span>
-<span id="cb73-4"><a href="#cb73-4"></a>plt.pie(x, labels<span class="op">=</span>y)</span>
-<span id="cb73-5"><a href="#cb73-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display">
-<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-52-output-1.png" width="459" height="409"></p>
 </div>
-</div>
-<p><strong>Box plots</strong></p>
 <div class="cell" data-execution_count="52">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a><span class="co"># Sample data</span></span>
-<span id="cb74-2"><a href="#cb74-2"></a>data <span class="op">=</span> {</span>
-<span id="cb74-3"><a href="#cb74-3"></a>    <span class="st">'Category'</span>: [<span class="st">'A'</span>]<span class="op">*</span><span class="dv">10</span> <span class="op">+</span> [<span class="st">'B'</span>]<span class="op">*</span><span class="dv">10</span>,</span>
-<span id="cb74-4"><a href="#cb74-4"></a>    <span class="st">'Value'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>]</span>
-<span id="cb74-5"><a href="#cb74-5"></a>}</span>
-<span id="cb74-6"><a href="#cb74-6"></a></span>
-<span id="cb74-7"><a href="#cb74-7"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb74-8"><a href="#cb74-8"></a></span>
-<span id="cb74-9"><a href="#cb74-9"></a><span class="co"># Box plot</span></span>
-<span id="cb74-10"><a href="#cb74-10"></a>df.boxplot(by<span class="op">=</span><span class="st">'Category'</span>)</span>
-<span id="cb74-11"><a href="#cb74-11"></a>plt.title(<span class="st">'Box Plot Example'</span>)</span>
-<span id="cb74-12"><a href="#cb74-12"></a>plt.suptitle(<span class="st">''</span>)</span>
-<span id="cb74-13"><a href="#cb74-13"></a>plt.xlabel(<span class="st">'Category'</span>)</span>
-<span id="cb74-14"><a href="#cb74-14"></a>plt.ylabel(<span class="st">'Value'</span>)</span>
-<span id="cb74-15"><a href="#cb74-15"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb74-2"><a href="#cb74-2"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
+<span id="cb74-3"><a href="#cb74-3"></a>y <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Since we are using ipython notebook we need to run <code>%matplotlib inline</code> before running the plot</p>
+<div class="cell" data-execution_count="53">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a>plt.plot(x, y, <span class="st">'r'</span>) <span class="co"># 'r' is the color red</span></span>
+<span id="cb75-2"><a href="#cb75-2"></a>plt.xlabel(<span class="st">'X Axis Title Here'</span>)</span>
+<span id="cb75-3"><a href="#cb75-3"></a>plt.ylabel(<span class="st">'Y Axis Title Here'</span>)</span>
+<span id="cb75-4"><a href="#cb75-4"></a>plt.title(<span class="st">'String Title Here'</span>)</span>
+<span id="cb75-5"><a href="#cb75-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-53-output-1.png" width="832" height="440"></p>
+<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-54-output-1.png" width="808" height="449"></p>
+</div>
+</div>
+<p><strong>Bar charts</strong></p>
+<div class="cell" data-execution_count="54">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1"></a>x <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>]</span>
+<span id="cb76-2"><a href="#cb76-2"></a>y <span class="op">=</span> [<span class="dv">13</span>, <span class="dv">45</span>, <span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">96</span>, <span class="dv">76</span>]</span>
+<span id="cb76-3"><a href="#cb76-3"></a>plt.title(<span class="st">'Bar Graph'</span>)</span>
+<span id="cb76-4"><a href="#cb76-4"></a>plt.bar(x, y, color<span class="op">=</span><span class="st">'dodgerblue'</span>, width<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb76-5"><a href="#cb76-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-55-output-1.png" width="798" height="431"></p>
+</div>
+</div>
+<p><strong>Pie charts</strong></p>
+<div class="cell" data-execution_count="55">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1"></a>x <span class="op">=</span> [<span class="dv">35</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">30</span>]</span>
+<span id="cb77-2"><a href="#cb77-2"></a>y <span class="op">=</span> [<span class="st">'Apple'</span>, <span class="st">'Bananna'</span>, <span class="st">'Grapes'</span>, <span class="st">'Orange'</span>, <span class="st">'PineApple'</span>, <span class="st">'Dragon Fruit'</span>]</span>
+<span id="cb77-3"><a href="#cb77-3"></a>plt.title(<span class="st">'Pie Chart'</span>)</span>
+<span id="cb77-4"><a href="#cb77-4"></a>plt.pie(x, labels<span class="op">=</span>y)</span>
+<span id="cb77-5"><a href="#cb77-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-56-output-1.png" width="459" height="409"></p>
+</div>
+</div>
+<p><strong>Box plots</strong></p>
+<div class="cell" data-execution_count="56">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1"></a><span class="co"># Sample data</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a>data <span class="op">=</span> {</span>
+<span id="cb78-3"><a href="#cb78-3"></a>    <span class="st">'Category'</span>: [<span class="st">'A'</span>]<span class="op">*</span><span class="dv">10</span> <span class="op">+</span> [<span class="st">'B'</span>]<span class="op">*</span><span class="dv">10</span>,</span>
+<span id="cb78-4"><a href="#cb78-4"></a>    <span class="st">'Value'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>]</span>
+<span id="cb78-5"><a href="#cb78-5"></a>}</span>
+<span id="cb78-6"><a href="#cb78-6"></a></span>
+<span id="cb78-7"><a href="#cb78-7"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb78-8"><a href="#cb78-8"></a></span>
+<span id="cb78-9"><a href="#cb78-9"></a><span class="co"># Box plot</span></span>
+<span id="cb78-10"><a href="#cb78-10"></a>df.boxplot(by<span class="op">=</span><span class="st">'Category'</span>)</span>
+<span id="cb78-11"><a href="#cb78-11"></a>plt.title(<span class="st">'Box Plot Example'</span>)</span>
+<span id="cb78-12"><a href="#cb78-12"></a>plt.suptitle(<span class="st">''</span>)</span>
+<span id="cb78-13"><a href="#cb78-13"></a>plt.xlabel(<span class="st">'Category'</span>)</span>
+<span id="cb78-14"><a href="#cb78-14"></a>plt.ylabel(<span class="st">'Value'</span>)</span>
+<span id="cb78-15"><a href="#cb78-15"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-57-output-1.png" width="832" height="440"></p>
 </div>
 </div>
 </div>
 <div id="tabset-6-2">
 <p>Seaborn module for visualization</p>
 <p><strong>Line Graph</strong></p>
-<div class="cell" data-execution_count="53">
+<div class="cell" data-execution_count="57">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a><span class="co"># importing packages</span></span>
-<span id="cb75-2"><a href="#cb75-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb75-3"><a href="#cb75-3"></a><span class="co"># loading dataset</span></span>
-<span id="cb75-4"><a href="#cb75-4"></a>data <span class="op">=</span> sns.load_dataset(<span class="st">"iris"</span>)</span>
-<span id="cb75-5"><a href="#cb75-5"></a><span class="co"># draw lineplot</span></span>
-<span id="cb75-6"><a href="#cb75-6"></a>sns.lineplot(x<span class="op">=</span><span class="st">"sepal_length"</span>, y<span class="op">=</span><span class="st">"sepal_width"</span>, data<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># importing packages</span></span>
+<span id="cb79-2"><a href="#cb79-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb79-3"><a href="#cb79-3"></a><span class="co"># loading dataset</span></span>
+<span id="cb79-4"><a href="#cb79-4"></a>data <span class="op">=</span> sns.load_dataset(<span class="st">"iris"</span>)</span>
+<span id="cb79-5"><a href="#cb79-5"></a><span class="co"># draw lineplot</span></span>
+<span id="cb79-6"><a href="#cb79-6"></a>sns.lineplot(x<span class="op">=</span><span class="st">"sepal_length"</span>, y<span class="op">=</span><span class="st">"sepal_width"</span>, data<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>&lt;Axes: xlabel='sepal_length', ylabel='sepal_width'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-54-output-2.png" width="812" height="433"></p>
+<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-58-output-2.png" width="812" height="433"></p>
 </div>
 </div>
 <p><strong>Scatter Graph</strong></p>
-<div class="cell" data-execution_count="54">
+<div class="cell" data-execution_count="58">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1"></a>data <span class="op">=</span> sns.load_dataset(<span class="st">"iris"</span>)</span>
-<span id="cb77-2"><a href="#cb77-2"></a>sns.scatterplot(data<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1"></a>data <span class="op">=</span> sns.load_dataset(<span class="st">"iris"</span>)</span>
+<span id="cb81-2"><a href="#cb81-2"></a>sns.scatterplot(data<span class="op">=</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>&lt;Axes: &gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-55-output-2.png" width="781" height="411"></p>
+<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-59-output-2.png" width="781" height="411"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="55">
+<div class="cell" data-execution_count="59">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1"></a><span class="co">#import seaborn as sns</span></span>
-<span id="cb79-2"><a href="#cb79-2"></a></span>
-<span id="cb79-3"><a href="#cb79-3"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
-<span id="cb79-4"><a href="#cb79-4"></a></span>
-<span id="cb79-5"><a href="#cb79-5"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"total_bill"</span>, y<span class="op">=</span><span class="st">"tip"</span>, data<span class="op">=</span>tips)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1"></a><span class="co">#import seaborn as sns</span></span>
+<span id="cb83-2"><a href="#cb83-2"></a></span>
+<span id="cb83-3"><a href="#cb83-3"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb83-4"><a href="#cb83-4"></a></span>
+<span id="cb83-5"><a href="#cb83-5"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"total_bill"</span>, y<span class="op">=</span><span class="st">"tip"</span>, data<span class="op">=</span>tips)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>&lt;Axes: xlabel='total_bill', ylabel='tip'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-56-output-2.png" width="808" height="429"></p>
+<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-60-output-2.png" width="808" height="429"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="56">
+<div class="cell" data-execution_count="60">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb81-2"><a href="#cb81-2"></a></span>
-<span id="cb81-3"><a href="#cb81-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb81-4"><a href="#cb81-4"></a></span>
-<span id="cb81-5"><a href="#cb81-5"></a></span>
-<span id="cb81-6"><a href="#cb81-6"></a></span>
-<span id="cb81-7"><a href="#cb81-7"></a></span>
-<span id="cb81-8"><a href="#cb81-8"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
-<span id="cb81-9"><a href="#cb81-9"></a></span>
-<span id="cb81-10"><a href="#cb81-10"></a></span>
-<span id="cb81-11"><a href="#cb81-11"></a></span>
-<span id="cb81-12"><a href="#cb81-12"></a></span>
-<span id="cb81-13"><a href="#cb81-13"></a><span class="co"># customize the scatter plot</span></span>
-<span id="cb81-14"><a href="#cb81-14"></a></span>
-<span id="cb81-15"><a href="#cb81-15"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"total_bill"</span>, y<span class="op">=</span><span class="st">"tip"</span>, hue<span class="op">=</span><span class="st">"sex"</span>, size<span class="op">=</span><span class="st">"size"</span>, sizes<span class="op">=</span>(<span class="dv">50</span>, <span class="dv">200</span>), data<span class="op">=</span>tips)</span>
-<span id="cb81-16"><a href="#cb81-16"></a></span>
-<span id="cb81-17"><a href="#cb81-17"></a></span>
-<span id="cb81-18"><a href="#cb81-18"></a></span>
-<span id="cb81-19"><a href="#cb81-19"></a></span>
-<span id="cb81-20"><a href="#cb81-20"></a><span class="co"># add labels and title</span></span>
-<span id="cb81-21"><a href="#cb81-21"></a></span>
-<span id="cb81-22"><a href="#cb81-22"></a>plt.xlabel(<span class="st">"Total Bill"</span>)</span>
-<span id="cb81-23"><a href="#cb81-23"></a></span>
-<span id="cb81-24"><a href="#cb81-24"></a>plt.ylabel(<span class="st">"Tip"</span>)</span>
-<span id="cb81-25"><a href="#cb81-25"></a></span>
-<span id="cb81-26"><a href="#cb81-26"></a>plt.title(<span class="st">"Relationship between Total Bill and Tip"</span>)</span>
-<span id="cb81-27"><a href="#cb81-27"></a></span>
-<span id="cb81-28"><a href="#cb81-28"></a></span>
-<span id="cb81-29"><a href="#cb81-29"></a></span>
-<span id="cb81-30"><a href="#cb81-30"></a></span>
-<span id="cb81-31"><a href="#cb81-31"></a><span class="co"># display the plot</span></span>
-<span id="cb81-32"><a href="#cb81-32"></a></span>
-<span id="cb81-33"><a href="#cb81-33"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb85-2"><a href="#cb85-2"></a></span>
+<span id="cb85-3"><a href="#cb85-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb85-4"><a href="#cb85-4"></a></span>
+<span id="cb85-5"><a href="#cb85-5"></a></span>
+<span id="cb85-6"><a href="#cb85-6"></a></span>
+<span id="cb85-7"><a href="#cb85-7"></a></span>
+<span id="cb85-8"><a href="#cb85-8"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb85-9"><a href="#cb85-9"></a></span>
+<span id="cb85-10"><a href="#cb85-10"></a></span>
+<span id="cb85-11"><a href="#cb85-11"></a></span>
+<span id="cb85-12"><a href="#cb85-12"></a></span>
+<span id="cb85-13"><a href="#cb85-13"></a><span class="co"># customize the scatter plot</span></span>
+<span id="cb85-14"><a href="#cb85-14"></a></span>
+<span id="cb85-15"><a href="#cb85-15"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"total_bill"</span>, y<span class="op">=</span><span class="st">"tip"</span>, hue<span class="op">=</span><span class="st">"sex"</span>, size<span class="op">=</span><span class="st">"size"</span>, sizes<span class="op">=</span>(<span class="dv">50</span>, <span class="dv">200</span>), data<span class="op">=</span>tips)</span>
+<span id="cb85-16"><a href="#cb85-16"></a></span>
+<span id="cb85-17"><a href="#cb85-17"></a></span>
+<span id="cb85-18"><a href="#cb85-18"></a></span>
+<span id="cb85-19"><a href="#cb85-19"></a></span>
+<span id="cb85-20"><a href="#cb85-20"></a><span class="co"># add labels and title</span></span>
+<span id="cb85-21"><a href="#cb85-21"></a></span>
+<span id="cb85-22"><a href="#cb85-22"></a>plt.xlabel(<span class="st">"Total Bill"</span>)</span>
+<span id="cb85-23"><a href="#cb85-23"></a></span>
+<span id="cb85-24"><a href="#cb85-24"></a>plt.ylabel(<span class="st">"Tip"</span>)</span>
+<span id="cb85-25"><a href="#cb85-25"></a></span>
+<span id="cb85-26"><a href="#cb85-26"></a>plt.title(<span class="st">"Relationship between Total Bill and Tip"</span>)</span>
+<span id="cb85-27"><a href="#cb85-27"></a></span>
+<span id="cb85-28"><a href="#cb85-28"></a></span>
+<span id="cb85-29"><a href="#cb85-29"></a></span>
+<span id="cb85-30"><a href="#cb85-30"></a></span>
+<span id="cb85-31"><a href="#cb85-31"></a><span class="co"># display the plot</span></span>
+<span id="cb85-32"><a href="#cb85-32"></a></span>
+<span id="cb85-33"><a href="#cb85-33"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-57-output-1.png" width="808" height="449"></p>
+<p><img data-src="MsaPythonDataAnalytics_files/figure-revealjs/cell-61-output-1.png" width="808" height="449"></p>
 </div>
 </div>
 </div>
