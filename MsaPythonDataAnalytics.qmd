@@ -4,7 +4,7 @@ jupyter: python3
 format: 
   revealjs:
     theme: serif
-    smaller: true
+    smaller: false
     scrollable: true
     incremental: false
     transition: concave
@@ -1636,9 +1636,18 @@ plt.show()
 
 :::
 
-## Bonus Material
+# Bonus Material
 
-### {fullscreen=true}
+## {fullscreen=true}
+
+<iframe class="stretch" data-src="https://docs.google.com/presentation/d/16T9NAqRoLzOy1h5PtO_uoHN2lE037w9o/edit#slide=id.p1"></iframe>
+
+## {fullscreen=true}
+
+<iframe class="stretch" data-src="https://docs.google.com/presentation/d/1ONt4y1iNkKB0bEZXBqucG--xwOIcoE8R/edit#slide=id.p1"></iframe>
+
+
+## {fullscreen=true}
 
 <iframe class="stretch" data-src="https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html"></iframe>
 
