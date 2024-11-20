@@ -1404,7 +1404,6 @@ fill_value=0, margins=True)
 
 ```
 
-
 :::
 
 ## Visualization
@@ -1614,6 +1613,12 @@ plt.show()
 ```
 
 
+### Plotnine
+
+## {fullscreen=true}
+
+<iframe class="stretch" data-src="https://plotnine.org/reference/geom_point.html#basic-scatter-plot"></iframe>
+
 ### Pandas Inbuilt Visualization
 
 * df.plot.area     
@@ -1630,6 +1635,13 @@ plt.show()
 
 
 :::
+
+## Bonus Material
+
+### {fullscreen=true}
+
+<iframe class="stretch" data-src="https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html"></iframe>
+
 
 
 ## Folder Structure & File Management {visibility="hidden"}
